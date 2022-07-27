@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  riderorderapi:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "80"

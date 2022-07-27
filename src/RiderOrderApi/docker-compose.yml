@@ -1,0 +1,33 @@
+version: '3.4'
+
+services:
+    riderorderdatabase:
+        image: postgres
+        environment:
+            POSTGRES_DB: postgres
+            POSTGRES_USER: admin
+            POSTGRES_PASSWORD: s3cr3t
+        ports:
+            - "5432:5432"
+        volumes:
+            - /home/robertofreire/PostgreSQL:/var/lib/postgresql/data
+        networks:
+            - net
+
+    pgadmin:
+        image: dpage/pgadmin4
+        environment:
+            PGADMIN_DEFAULT_EMAIL: "robertofreireferrazpassos@yahoo.com.br"
+            PGADMIN_DEFAULT_PASSWORD: "PgAdmin2019!"
+        ports:
+            - "16543:80"
+        depends_on:
+            - riderorderdatabase
+        networks:
+            - net
+
+    riderorderapi:
+        image: ${DOCKER_REGISTRY-}riderorderapi
+        build:
+            context: .
+            dockerfile: RiderOrderApi/Dockerfile
