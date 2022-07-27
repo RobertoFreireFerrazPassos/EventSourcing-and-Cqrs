@@ -39,3 +39,5 @@ console app wich display the order when is complete
 </p>
 
 # References:
+
+https://github.com/evgeniy-khist/postgresql-event-sourcing/tree/v2
