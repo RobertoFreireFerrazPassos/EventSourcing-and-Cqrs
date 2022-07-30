@@ -8,6 +8,11 @@ https://www.youtube.com/watch?v=YzOBrVlthMk&ab_channel=NickChapsas
 
 https://henriquemauri.net/mediatr-no-net-6-0/
 
+Implement two phase commit between both databases (Event Store and Read)
+
+https://www.c-sharpcorner.com/article/two-phase-commit-protocol-in-c-sharp/#:~:text=In%20this%20article%2C%20you%20will,phase%20commit%20protocol%20in%20C%23.&text=Two%20phase%20commit%20protocol%20is,single%20transaction%20or%20discrete%20transaction.
+
+
 2 - Cretate Event Store Database
 
 use read-write connection string
