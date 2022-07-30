@@ -1,5 +1,18 @@
 # Event-Sourcing and CQRS
 
+## Overview
+
+<p align="center">
+  <img src="https://github.com/RobertoFreireFerrazPassos/EventSourcing-and-Cqrs/blob/main/Images/project.png?raw=true">
+</p>
+
+CQRS and Event Sourcing
+
+<p align="center">
+  <img src="https://github.com/RobertoFreireFerrazPassos/EventSourcing-and-Cqrs/blob/main/Images/diagram.png?raw=true">
+</p>
+
+
 ## Next steps:
 
 1 - Implement CQRS
@@ -37,11 +50,6 @@ console app wich display the order when is complete
 ## Steps to test:
 
 
-## Overview
-
-<p align="center">
-  <img src="https://github.com/RobertoFreireFerrazPassos/EventSourcing-and-Cqrs/blob/main/Images/diagram.png?raw=true">
-</p>
 
 # References:
 
