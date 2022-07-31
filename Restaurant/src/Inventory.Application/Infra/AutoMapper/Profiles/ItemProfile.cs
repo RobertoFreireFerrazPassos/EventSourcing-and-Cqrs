@@ -9,6 +9,7 @@ namespace Inventory.Application.Infra.AutoMapper.Profiles
         public ItemProfile()
         {
             CreateMap<Item, ItemEntity>().ReverseMap();
+            CreateMap<QuantityItem, ItemEntity>();
         }
     }
 }

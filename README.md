@@ -53,12 +53,12 @@ Get the id of saved items (/Inventory/Get) and update items:
 }
 ```
 
-Try use a quantity bigger than the value in the inventory. It must return false:
+Try use a quantity bigger than the value in the inventory. It will return false:
 ```json
 {
   "items": [
     {
-      "id": "8120d5a4-356e-4d62-abf9-aa02afa32147",
+      "id": "{{id}}",
       "name": "Onion",
       "price": 0.2,
       "quantity": 20,
@@ -73,18 +73,12 @@ Use a item (/Inventory/Use)
 {
   "items": [
     {
-      "id": "8120d5a4-356e-4d62-abf9-aa02afa32147",
-      "name": "Onion",
-      "price": 0.2,
-      "quantity": 4,
-      "unit": 1
+      "id": "{{id}}",
+      "quantity": 4
     },
     {
-      "id": "3ee9b62c-8c51-4570-bb81-6bef95775b08",
-      "name": "Garlic",
-      "price": 0.2,
-      "quantity": 1,
-      "unit": 1
+      "id": "{{id}}",
+      "quantity": 1
     }
   ]
 }
@@ -95,14 +89,14 @@ The result will be:
 {
   "items": [
     {
-      "id": "8120d5a4-356e-4d62-abf9-aa02afa32147",
+      "id": "{{id}}",
       "name": "Onion",
       "price": 0.2,
       "quantity": 8,
       "unit": 1
     },
     {
-      "id": "3ee9b62c-8c51-4570-bb81-6bef95775b08",
+      "id": "{{id}}",
       "name": "Garlic",
       "price": 0.2,
       "quantity": 4,
@@ -117,18 +111,12 @@ You can return it (/Inventory/Return):
 {
   "items": [
     {
-      "id": "8120d5a4-356e-4d62-abf9-aa02afa32147",
-      "name": "Onion",
-      "price": 0.2,
-      "quantity": 4,
-      "unit": 1
+      "id": "{{id}}",
+      "quantity": 4
     },
     {
-      "id": "3ee9b62c-8c51-4570-bb81-6bef95775b08",
-      "name": "Garlic",
-      "price": 0.2,
-      "quantity": 1,
-      "unit": 1
+      "id": "{{id}}",
+      "quantity": 1
     }
   ]
 }
@@ -139,14 +127,14 @@ The result will be:
 {
   "items": [
     {
-      "id": "8120d5a4-356e-4d62-abf9-aa02afa32147",
+      "id": "{{id}}",
       "name": "Onion",
       "price": 0.2,
       "quantity": 12,
       "unit": 1
     },
     {
-      "id": "3ee9b62c-8c51-4570-bb81-6bef95775b08",
+      "id": "{{id}}",
       "name": "Garlic",
       "price": 0.2,
       "quantity": 5,

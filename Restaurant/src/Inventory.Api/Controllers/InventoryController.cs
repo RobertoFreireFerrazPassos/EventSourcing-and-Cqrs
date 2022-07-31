@@ -43,7 +43,7 @@ namespace Inventory.Api.Controllers
         }
 
         [HttpPost("Use")]
-        public async Task<IActionResult> UseItems(UpdateItemsRequest request)
+        public async Task<IActionResult> UseItems(UseItemsRequest request)
         {
             try
             {
@@ -58,7 +58,7 @@ namespace Inventory.Api.Controllers
         }
 
         [HttpPost("Return")]
-        public async Task<IActionResult> ReturnItems(UpdateItemsRequest request)
+        public async Task<IActionResult> ReturnItems(ReturnItemsRequest request)
         {
             try
             {
