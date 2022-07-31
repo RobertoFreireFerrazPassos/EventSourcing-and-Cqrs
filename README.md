@@ -155,6 +155,6 @@ https://www.youtube.com/watch?v=YzOBrVlthMk&ab_channel=NickChapsas
 
 https://henriquemauri.net/mediatr-no-net-6-0/
 
-https://docs.microsoft.com/en-us/aspnet/mvc/overview/getting-started/getting-started-with-ef-using-mvc/handling-concurrency-with-the-entity-framework-in-an-asp-net-mvc-application
+Optimistic Concurrency:
 
-https://docs.microsoft.com/en-us/aspnet/web-forms/overview/data-access/editing-inserting-and-deleting-data/implementing-optimistic-concurrency-cs
+https://docs.microsoft.com/en-us/aspnet/mvc/overview/getting-started/getting-started-with-ef-using-mvc/handling-concurrency-with-the-entity-framework-in-an-asp-net-mvc-application
