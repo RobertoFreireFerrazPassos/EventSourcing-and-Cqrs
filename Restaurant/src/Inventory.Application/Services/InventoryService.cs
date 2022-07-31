@@ -15,7 +15,17 @@ namespace Inventory.Application.Services
 
         public async Task<IEnumerable<ItemEntity>> GetItemsAsync()
         {
-            return await _inventoryRepository.GetAll();
+            return await _inventoryRepository.GetAllAsync();
+        }
+
+        public bool ReturnItemsAsync(IEnumerable<ItemEntity> items)
+        {
+            return _inventoryRepository.ReturnItems(items);
+        }
+
+        public bool UseItemsAsync(IEnumerable<ItemEntity> items)
+        {
+            return _inventoryRepository.UseItems(items);
         }
 
         public void UpdateItems(IEnumerable<ItemEntity> items)

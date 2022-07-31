@@ -4,8 +4,9 @@ namespace Inventory.Domain.Repositories
 {
     public interface IItemRepository
     {
-        public Task<IEnumerable<ItemEntity>> GetAll();
-
-        public void UpdateRange(IEnumerable<ItemEntity> items);
+        Task<IEnumerable<ItemEntity>> GetAllAsync();
+        void UpdateRange(IEnumerable<ItemEntity> items);
+        bool UseItems(IEnumerable<ItemEntity> items);
+        bool ReturnItems(IEnumerable<ItemEntity> items);
     }
 }

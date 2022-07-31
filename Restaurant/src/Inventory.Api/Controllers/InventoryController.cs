@@ -42,7 +42,39 @@ namespace Inventory.Api.Controllers
             }
         }
 
-        [HttpPut("Update")]
+        [HttpPost("Use")]
+        public async Task<IActionResult> UseItems(UpdateItemsRequest request)
+        {
+            try
+            {
+                return Ok(_inventoryService.UseItemsAsync(
+                        _mapper.Map<IEnumerable<ItemEntity>>(request.Items))
+                    );
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpPost("Return")]
+        public async Task<IActionResult> ReturnItems(UpdateItemsRequest request)
+        {
+            try
+            {
+                return Ok(
+                        _inventoryService.ReturnItemsAsync(
+                            _mapper.Map<IEnumerable<ItemEntity>>(request.Items)
+                        )
+                    );
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpPost("Update")]
         public async Task<IActionResult> UpdateItems(UpdateItemsRequest request)
         {
             try
