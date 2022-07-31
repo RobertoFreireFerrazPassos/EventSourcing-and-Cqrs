@@ -53,22 +53,19 @@ Get the id of saved items (/Inventory/Get) and update items:
 }
 ```
 
-Try use a quantity bigger than the value in the inventory. It will return false:
+Try use a item (/Inventory/Use) with quantity bigger than the value in the inventory. It will return false:
 ```json
 {
   "items": [
     {
       "id": "{{id}}",
-      "name": "Onion",
-      "price": 0.2,
-      "quantity": 20,
-      "unit": 1
+      "quantity": 20
     }
   ]
 }
 ```
 
-Use a item (/Inventory/Use)
+Use a item:
 ```json
 {
   "items": [
