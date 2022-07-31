@@ -1,18 +1,25 @@
-﻿using Inventory.Application.Services;
+﻿using Inventory.Application.Infra.AutoMapper;
+using Inventory.Application.Services;
+using Inventory.DataAccess.Context;
+using Inventory.DataAccess.Repositories;
+using Inventory.Domain.Repositories;
 using Inventory.Domain.Services;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Inventory.CrossCutting.IoC
 {
-    public class NativeDependencyInjector
+    public static class NativeDependencyInjector
     {
-        public static void RegisterServices(IServiceCollection services)
+        public static void RegisterServices(this IServiceCollection services)
         {
-            #region Services  
-
+            // Application
             services.AddScoped<IInventoryService, InventoryService>();
 
-            #endregion
+            // Application - AutoMapper
+            AutoMapperConfiguration.RegisterMappings(services);
+
+            // Infra - Data
+            services.AddScoped<IItemRepository, ItemRepository>();
         }
     }
 }

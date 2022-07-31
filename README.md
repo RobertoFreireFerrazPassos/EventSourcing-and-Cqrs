@@ -18,7 +18,42 @@ CQRS and Event Sourcing
 
 ## Steps to test:
 
+Add new Item:
 
+```json
+{
+  "items": [
+    {
+      "name": "Onion",
+      "price": 0.10,
+      "quantity": 12,
+      "unit": 1
+    }
+  ]
+}
+```
+
+Use the /Inventory/Get endpoint to get the Id and Update Items
+
+```json
+{
+  "items": [
+    {
+      "id": "1da3a7c8-cb3e-47d6-8672-237a04c92948",
+      "name": "Onion",
+      "price": 0.20,
+      "quantity": 12,
+      "unit": 1
+    },
+    {
+      "name": "Garlic",
+      "price": 0.20,
+      "quantity": 5,
+      "unit": 1
+    }
+  ]
+}
+```
 
 # References:
 

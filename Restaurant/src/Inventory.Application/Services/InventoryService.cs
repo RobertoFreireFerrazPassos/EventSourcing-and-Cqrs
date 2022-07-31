@@ -1,17 +1,26 @@
-﻿using Inventory.Domain.Services;
+﻿using Inventory.Domain.Entities;
+using Inventory.Domain.Repositories;
+using Inventory.Domain.Services;
 
 namespace Inventory.Application.Services
 {
     public class InventoryService : IInventoryService
     {
-        public async Task GetItemsAsync()
+        private readonly IItemRepository _inventoryRepository;
+
+        public InventoryService(IItemRepository inventoryRepository)
         {
-            return null;
+            _inventoryRepository = inventoryRepository;
         }
 
-        public async Task UpdateItemsAsync()
+        public async Task<IEnumerable<ItemEntity>> GetItemsAsync()
         {
-            return null;
+            return await _inventoryRepository.GetAll();
+        }
+
+        public void UpdateItems(IEnumerable<ItemEntity> items)
+        {
+            _inventoryRepository.UpdateRange(items);
         }
     }
 }

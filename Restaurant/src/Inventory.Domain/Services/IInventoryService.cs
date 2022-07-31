@@ -1,9 +1,11 @@
-﻿namespace Inventory.Domain.Services
+﻿using Inventory.Domain.Entities;
+
+namespace Inventory.Domain.Services
 {
     public interface IInventoryService
     {
-        public Task<ItemsResponse> GetItemsAsync();
+        public Task<IEnumerable<ItemEntity>> GetItemsAsync();
 
-        public Task<ItemsResponse> UpdateItemsAsync();
+        public void UpdateItems(IEnumerable<ItemEntity> items);
     }
 }

@@ -1,8 +1,8 @@
 ﻿using Inventory.Application.DataContracts.Data;
 
-namespace Inventory.Application.DataContracts.Responses
+namespace Inventory.Application.DataContracts.Requests
 {
-    public class ItemsResponse
+    public class UpdateItemsRequest
     {
         public IEnumerable<Item> Items { get; set; }
     }
