@@ -18,8 +18,7 @@ CQRS and Event Sourcing
 
 ## Steps to test:
 
-Add new Item:
-
+Add new item (/Inventory/Update):
 ```json
 {
   "items": [
@@ -33,13 +32,12 @@ Add new Item:
 }
 ```
 
-Use the /Inventory/Get endpoint to get the Id and Update Items
-
+Get the id of saved items (/Inventory/Get) and update items:
 ```json
 {
   "items": [
     {
-      "id": "1da3a7c8-cb3e-47d6-8672-237a04c92948",
+      "id": "{{id}}",
       "name": "Onion",
       "price": 0.20,
       "quantity": 12,
@@ -48,6 +46,109 @@ Use the /Inventory/Get endpoint to get the Id and Update Items
     {
       "name": "Garlic",
       "price": 0.20,
+      "quantity": 5,
+      "unit": 1
+    }
+  ]
+}
+```
+
+Try use a quantity bigger than the value in the inventory. It must return false:
+```json
+{
+  "items": [
+    {
+      "id": "8120d5a4-356e-4d62-abf9-aa02afa32147",
+      "name": "Onion",
+      "price": 0.2,
+      "quantity": 20,
+      "unit": 1
+    }
+  ]
+}
+```
+
+Use a item (/Inventory/Use)
+```json
+{
+  "items": [
+    {
+      "id": "8120d5a4-356e-4d62-abf9-aa02afa32147",
+      "name": "Onion",
+      "price": 0.2,
+      "quantity": 4,
+      "unit": 1
+    },
+    {
+      "id": "3ee9b62c-8c51-4570-bb81-6bef95775b08",
+      "name": "Garlic",
+      "price": 0.2,
+      "quantity": 1,
+      "unit": 1
+    }
+  ]
+}
+```
+
+The result will be:
+```json
+{
+  "items": [
+    {
+      "id": "8120d5a4-356e-4d62-abf9-aa02afa32147",
+      "name": "Onion",
+      "price": 0.2,
+      "quantity": 8,
+      "unit": 1
+    },
+    {
+      "id": "3ee9b62c-8c51-4570-bb81-6bef95775b08",
+      "name": "Garlic",
+      "price": 0.2,
+      "quantity": 4,
+      "unit": 1
+    }
+  ]
+}
+```
+
+You can return it (/Inventory/Return):
+```json
+{
+  "items": [
+    {
+      "id": "8120d5a4-356e-4d62-abf9-aa02afa32147",
+      "name": "Onion",
+      "price": 0.2,
+      "quantity": 4,
+      "unit": 1
+    },
+    {
+      "id": "3ee9b62c-8c51-4570-bb81-6bef95775b08",
+      "name": "Garlic",
+      "price": 0.2,
+      "quantity": 1,
+      "unit": 1
+    }
+  ]
+}
+```
+
+The result will be:
+```json
+{
+  "items": [
+    {
+      "id": "8120d5a4-356e-4d62-abf9-aa02afa32147",
+      "name": "Onion",
+      "price": 0.2,
+      "quantity": 12,
+      "unit": 1
+    },
+    {
+      "id": "3ee9b62c-8c51-4570-bb81-6bef95775b08",
+      "name": "Garlic",
+      "price": 0.2,
       "quantity": 5,
       "unit": 1
     }
