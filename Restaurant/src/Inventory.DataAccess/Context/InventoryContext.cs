@@ -7,6 +7,6 @@ namespace Inventory.DataAccess.Context
     {
         public InventoryContext(DbContextOptions<InventoryContext> options) : base(options) { }
 
-        public DbSet<ItemEntity> Inventory { get; set; }
+        public DbSet<ItemEntity> Items { get; set; }
     }
 }

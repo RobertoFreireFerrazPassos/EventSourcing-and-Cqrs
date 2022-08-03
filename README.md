@@ -15,6 +15,10 @@ CQRS and Event Sourcing
 
 ## Next steps:
 
+Pass all Context classes and DbContextOptions UseInMemoryDatabase using injection:
+
+https://docs.microsoft.com/en-us/ef/core/dbcontext-configuration/
+
 
 ## Steps to test:
 

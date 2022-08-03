@@ -15,7 +15,7 @@ namespace Inventory.DataAccess.Repositories
         {
             using (var context = new InventoryContext(_options))
             {
-                return await context.Inventory.ToListAsync();
+                return await context.Items.ToListAsync();
             }
         }
 
@@ -25,7 +25,7 @@ namespace Inventory.DataAccess.Repositories
 
             using (var context = new InventoryContext(_options))
             {
-                var itemsFound = context.Inventory.Where(i => itemsToUse.Contains(i.Id));
+                var itemsFound = context.Items.Where(i => itemsToUse.Contains(i.Id));
 
                 if (itemsFound.Count() != itemsToUse.Count)
                 {
@@ -38,7 +38,7 @@ namespace Inventory.DataAccess.Repositories
 
                     itemFound.Quantity = itemFound.Quantity + currentItem.Quantity;
 
-                    context.Inventory.Attach(itemFound).Property(i => i.Quantity).IsModified = true;
+                    context.Items.Attach(itemFound).Property(i => i.Quantity).IsModified = true;
                 }
 
                 context.SaveChanges();
@@ -53,7 +53,7 @@ namespace Inventory.DataAccess.Repositories
 
             using (var context = new InventoryContext(_options))
             {
-                var itemsFound = context.Inventory.Where(i => itemsToUse.Contains(i.Id));
+                var itemsFound = context.Items.Where(i => itemsToUse.Contains(i.Id));
 
                 if (itemsFound.Count() != itemsToUse.Count)
                 {
@@ -78,7 +78,7 @@ namespace Inventory.DataAccess.Repositories
 
                     itemFound.Quantity = countDifference;
 
-                    context.Inventory.Attach(itemFound).Property(i => i.Quantity).IsModified = true;
+                    context.Items.Attach(itemFound).Property(i => i.Quantity).IsModified = true;
                 }
 
                 context.SaveChanges();
@@ -91,7 +91,7 @@ namespace Inventory.DataAccess.Repositories
         {
             using (var context = new InventoryContext(_options))
             {
-                context.Inventory.UpdateRange(items);
+                context.Items.UpdateRange(items);
                 context.SaveChanges();
             }
         }

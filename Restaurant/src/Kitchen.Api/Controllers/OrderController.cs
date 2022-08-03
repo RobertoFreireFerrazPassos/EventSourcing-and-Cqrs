@@ -21,7 +21,7 @@ namespace Kitchen.Api.Controllers
         {
             try
             {
-                var command = new CreateOrderCommand();
+                var command = new CreateOrderCommand(request);
                 var result = _mediator.Send(command);
                 return Ok(result);
             }

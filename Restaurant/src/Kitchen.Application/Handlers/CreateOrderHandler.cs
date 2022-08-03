@@ -1,6 +1,6 @@
 ﻿using Kitchen.Application.Commands;
 using Kitchen.Application.DataContracts.Responses;
-using Kitchen.Domain.Services;
+using Kitchen.Application.Services;
 using MediatR;
 
 namespace Kitchen.Application.Handlers
@@ -15,7 +15,7 @@ namespace Kitchen.Application.Handlers
 
         public Task<OrderResponse> Handle(CreateOrderCommand request, CancellationToken cancellationToken)
         {
-            _orderService.CreateOrder();
+            _orderService.CreateOrder(request);
             return null;
         }
     }
