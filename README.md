@@ -15,12 +15,21 @@ CQRS and Event Sourcing
 
 ## Next steps:
 
-Pass all Context classes and DbContextOptions UseInMemoryDatabase using injection:
-
-https://docs.microsoft.com/en-us/ef/core/dbcontext-configuration/
+1 - Optmize schema before run migrations
 
 
 ## Steps to test:
+
+Run Docker Compose up
+
+In Visual Studio, open NuGet Package Manager Console from Tools -> NuGet Package Manager -> Package Manager Console and enter the following command:
+```
+update-database –verbose
+```
+NOTE: Must be...
+Using project 'InventoryStorage\Infrastructure\Inventory.DataAccess'.
+Using startup project 'InventoryStorage\Presentation\Inventory.Api'.
+
 
 Add new item (/Inventory/Update):
 ```json
@@ -158,6 +167,8 @@ https://www.c-sharpcorner.com/article/two-phase-commit-protocol-in-c-sharp/#:~:t
 https://www.youtube.com/watch?v=YzOBrVlthMk&ab_channel=NickChapsas
 
 https://henriquemauri.net/mediatr-no-net-6-0/
+
+https://www.entityframeworktutorial.net/efcore/entity-framework-core-console-application.aspx
 
 Optimistic Concurrency:
 

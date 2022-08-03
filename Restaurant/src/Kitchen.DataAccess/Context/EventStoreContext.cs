@@ -3,10 +3,12 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Kitchen.DataAccess.Context
 {
-    public class EventStoreContext : DbContext
+    public class EventStoreDbContext : DbContext
     {
-        public EventStoreContext(DbContextOptions<EventStoreContext> options) : base(options) { }
-
         public DbSet<StoredEvent> StoredEvents { get; set; }
+
+        public EventStoreDbContext(DbContextOptions<EventStoreDbContext> options) : base(options)
+        {
+        }
     }
 }

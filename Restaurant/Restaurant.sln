@@ -37,19 +37,19 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastru
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{79BDCFF8-5A67-4EB7-AA46-EA87AA50A3E1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kitchen.Api", "src\Kitchen.Api\Kitchen.Api.csproj", "{529907B1-62F4-4CF2-B5AC-9B1B98A40A92}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kitchen.Api", "src\Kitchen.Api\Kitchen.Api.csproj", "{529907B1-62F4-4CF2-B5AC-9B1B98A40A92}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kitchen.Client", "src\Kitchen.Client\Kitchen.Client.csproj", "{951ED6D6-36E5-4614-A838-A48098202BF1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kitchen.Client", "src\Kitchen.Client\Kitchen.Client.csproj", "{951ED6D6-36E5-4614-A838-A48098202BF1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kitchen.CrossCutting.IoC", "src\Kitchen.CrossCutting.IoC\Kitchen.CrossCutting.IoC.csproj", "{B29FD9AD-E71F-42B5-B947-C37F58131A02}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kitchen.CrossCutting.IoC", "src\Kitchen.CrossCutting.IoC\Kitchen.CrossCutting.IoC.csproj", "{B29FD9AD-E71F-42B5-B947-C37F58131A02}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kitchen.DataAccess", "src\Kitchen.DataAccess\Kitchen.DataAccess.csproj", "{9EBE8E55-3900-479E-AF44-11FE900F3151}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kitchen.DataAccess", "src\Kitchen.DataAccess\Kitchen.DataAccess.csproj", "{9EBE8E55-3900-479E-AF44-11FE900F3151}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kitchen.Application", "src\Kitchen.Application\Kitchen.Application.csproj", "{6DBCCA4C-3FB5-44C6-8E0D-F14EC739DB8C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kitchen.Application", "src\Kitchen.Application\Kitchen.Application.csproj", "{6DBCCA4C-3FB5-44C6-8E0D-F14EC739DB8C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kitchen.Domain", "src\Kitchen.Domain\Kitchen.Domain.csproj", "{C8ED1AFB-7228-4E1F-8D9D-6B826EB328EA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kitchen.Domain", "src\Kitchen.Domain\Kitchen.Domain.csproj", "{C8ED1AFB-7228-4E1F-8D9D-6B826EB328EA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kitchen.Events", "src\Kitchen.Events\Kitchen.Events.csproj", "{734C5EBE-9F2B-4B54-AD4A-FCDC27D2C3C4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kitchen.Events", "src\Kitchen.Events\Kitchen.Events.csproj", "{734C5EBE-9F2B-4B54-AD4A-FCDC27D2C3C4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

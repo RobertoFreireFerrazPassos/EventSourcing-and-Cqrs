@@ -21,9 +21,9 @@ namespace Kitchen.CrossCutting.IoC
             services.AddScoped<IOrderService, OrderService>();
 
             // Infra - Data EventSourcing
+            services.AddScoped<EventStoreDbContext>();
             services.AddScoped<IEventStoreRepository, EventStoreRepository>();
-            services.AddScoped<IEventStore, SqlEventStore>();
-            services.AddScoped<EventStoreContext>();
+            services.AddScoped<IEventStore, SqlEventStore>();            
         }
     }
 }

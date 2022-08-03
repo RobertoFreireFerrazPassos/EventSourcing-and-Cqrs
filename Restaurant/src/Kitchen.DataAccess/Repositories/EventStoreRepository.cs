@@ -1,23 +1,22 @@
 ﻿using Kitchen.DataAccess.Context;
 using Kitchen.Domain.Events.Entities;
 using Kitchen.Domain.Repositories;
-using Microsoft.EntityFrameworkCore;
 
 namespace Kitchen.DataAccess.Repositories
 {
     public class EventStoreRepository : IEventStoreRepository
     {
-        private DbContextOptions<EventStoreContext> _options = new DbContextOptionsBuilder<EventStoreContext>()
-               .UseInMemoryDatabase(databaseName: "EventStore")
-               .Options;
+        private readonly EventStoreDbContext _dbContext;
+
+        public EventStoreRepository(EventStoreDbContext dbContext)
+        {
+            _dbContext = dbContext;
+        }
 
         public void AppendEvent(StoredEvent storedEvent)
         {
-            using (var context = new EventStoreContext(_options))
-            {
-                context.StoredEvents.Add(storedEvent);
-                context.SaveChanges();
-            }
+            _dbContext.StoredEvents.Add(storedEvent);
+            _dbContext.SaveChanges();
         }
     }
 }

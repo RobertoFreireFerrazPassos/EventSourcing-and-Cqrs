@@ -7,10 +7,6 @@ EXPOSE 80
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
 COPY ["src/Kitchen.Api/Kitchen.Api.csproj", "src/Kitchen.Api/"]
-COPY ["src/Kitchen.Application/Kitchen.Application.csproj", "src/Kitchen.Application/"]
-COPY ["src/Kitchen.Domain/Kitchen.Domain.csproj", "src/Kitchen.Domain/"]
-COPY ["src/Kitchen.CrossCutting.IoC/Kitchen.CrossCutting.IoC.csproj", "src/Kitchen.CrossCutting.IoC/"]
-COPY ["src/Kitchen.DataAccess/Kitchen.DataAccess.csproj", "src/Kitchen.DataAccess/"]
 RUN dotnet restore "src/Kitchen.Api/Kitchen.Api.csproj"
 COPY . .
 WORKDIR "/src/src/Kitchen.Api"
