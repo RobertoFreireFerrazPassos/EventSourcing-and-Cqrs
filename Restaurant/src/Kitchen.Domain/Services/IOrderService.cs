@@ -3,5 +3,6 @@
     public interface IOrderService
     {
         void CreateOrder();
+        void GetOrder();
     }
 }

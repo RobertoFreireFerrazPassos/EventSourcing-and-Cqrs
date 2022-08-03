@@ -8,5 +8,10 @@ namespace Kitchen.Application.Services
         {
             
         }
+
+        public void GetOrder()
+        {
+            
+        }
     }
 }

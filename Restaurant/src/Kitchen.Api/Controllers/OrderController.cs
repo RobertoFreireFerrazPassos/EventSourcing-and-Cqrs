@@ -1,6 +1,7 @@
+using Kitchen.Application.Commands;
 using Kitchen.Application.DataContracts.Requests;
-using Kitchen.Application.Extensions.Mapping;
-using Kitchen.Domain.Services;
+using Kitchen.Application.Queries;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Kitchen.Api.Controllers
@@ -9,10 +10,10 @@ namespace Kitchen.Api.Controllers
     [Route("[controller]")]
     public class OrderController : ControllerBase
     {
-        private readonly IOrderService _orderService;
-        public OrderController(IOrderService orderService)
+        private readonly IMediator _mediator;
+        public OrderController(IMediator mediator)
         {
-            _orderService = orderService;
+            _mediator = mediator;
         }
 
         [HttpPost("Create")]
@@ -20,11 +21,9 @@ namespace Kitchen.Api.Controllers
         {
             try
             {
-                request.MapCreateOrderRequest();
-
-                _orderService.CreateOrder();
-
-                return Ok();
+                var command = new CreateOrderCommand();
+                var result = _mediator.Send(command);
+                return Ok(result);
             }
             catch (Exception ex)
             {
@@ -63,7 +62,9 @@ namespace Kitchen.Api.Controllers
         {
             try
             {
-                return Ok();
+                var query = new CheckOrderQuery();
+                var result = _mediator.Send(query);
+                return Ok(result);
             }
             catch (Exception ex)
             {
