@@ -1,4 +1,4 @@
-﻿namespace Kitchen.Application.DataContracts.Data
+﻿namespace Kitchen.Domain.Dtos
 {
     public enum OrderStatus
     {

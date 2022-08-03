@@ -1,4 +1,4 @@
-﻿using Kitchen.Application.DataContracts.Data;
+﻿using Kitchen.Domain.Dtos;
 
 namespace Kitchen.Application.DataContracts.Responses
 {

@@ -1,6 +1,7 @@
 ﻿using Kitchen.Application.Commands;
 using Kitchen.Domain.Events;
 using Kitchen.Domain.Events.Base;
+using Kitchen.Domain.Services;
 
 namespace Kitchen.Application.Services
 {
@@ -13,9 +14,8 @@ namespace Kitchen.Application.Services
             _eventStore = eventStore;
         }
 
-        public void CreateOrder(CreateOrderCommand request)
+        public void CreateOrder(OrderCreatedEvent orderCreatedEvent)
         {
-            var orderCreatedEvent = new OrderCreatedEvent(request.Id);
             _eventStore.Save(orderCreatedEvent);
         }
 
