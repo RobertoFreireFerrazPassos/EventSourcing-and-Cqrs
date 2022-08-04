@@ -35,13 +35,13 @@
                 <mxCell id="18" value="&lt;span&gt;Kitchen Api&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="50" y="50" width="120" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="59" style="edgeStyle=none;html=1;entryX=0;entryY=0;entryDx=0;entryDy=52.5;entryPerimeter=0;exitX=1.012;exitY=0.41;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="19" target="37">
+                <mxCell id="59" style="edgeStyle=none;html=1;entryX=0;entryY=0;entryDx=0;entryDy=52.5;entryPerimeter=0;exitX=1.012;exitY=0.41;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" source="19" target="37" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <mxPoint x="210" y="203" as="sourcePoint"/>
                         <mxPoint x="340" y="205" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="63" value="3. Append events" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="59">
+                <mxCell id="63" value="3. Append events" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="59" vertex="1" connectable="0">
                     <mxGeometry x="-0.1765" relative="1" as="geometry">
                         <mxPoint y="-16" as="offset"/>
                     </mxGeometry>
@@ -118,7 +118,7 @@
                 <mxCell id="42" value="&lt;span&gt;Receipts Api&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="532.5" y="270" width="120" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="60" style="edgeStyle=none;html=1;entryX=0.863;entryY=0.979;entryDx=0;entryDy=0;entryPerimeter=0;exitX=-0.006;exitY=0.271;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="52" target="19">
+                <mxCell id="60" style="edgeStyle=none;html=1;entryX=0.863;entryY=0.979;entryDx=0;entryDy=0;entryPerimeter=0;exitX=-0.006;exitY=0.271;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" source="52" target="19" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <mxPoint x="350" y="280" as="sourcePoint"/>
                         <Array as="points">
@@ -126,7 +126,7 @@
                         </Array>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="61" value="&lt;div&gt;2. Read events&lt;/div&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="60">
+                <mxCell id="61" value="&lt;div&gt;2. Read model&lt;/div&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="60" vertex="1" connectable="0">
                     <mxGeometry x="0.2155" y="-2" relative="1" as="geometry">
                         <mxPoint x="25" y="-18" as="offset"/>
                     </mxGeometry>
