@@ -13,9 +13,11 @@ namespace Kitchen.Application.Services
             _eventStore = eventStore;
         }
 
-        public void CreateOrder(OrderCreatedEvent orderCreatedEvent)
+        public OrderCreatedEvent CreateOrder(OrderCreatedEvent orderCreatedEvent)
         {
             _eventStore.Save(orderCreatedEvent);
+
+            return orderCreatedEvent;
         }
 
         public void GetOrder()

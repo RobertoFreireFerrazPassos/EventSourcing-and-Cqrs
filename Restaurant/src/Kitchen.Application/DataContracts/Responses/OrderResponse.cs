@@ -1,4 +1,5 @@
 ﻿using Kitchen.Domain.Dtos;
+using Kitchen.Domain.Enums;
 
 namespace Kitchen.Application.DataContracts.Responses
 {

@@ -20,15 +20,24 @@ CQRS and Event Sourcing
 
 ## Steps to test:
 
-Run Docker Compose up
+Run Docker Compose up to create database server
 
 In Visual Studio, open NuGet Package Manager Console from Tools -> NuGet Package Manager -> Package Manager Console and enter the following command:
 ```
+add-migration Inventory
 update-database –verbose
 ```
 NOTE: Must be...
 Using project 'InventoryStorage\Infrastructure\Inventory.DataAccess'.
 Using startup project 'InventoryStorage\Presentation\Inventory.Api'.
+
+```
+add-migration Kitchen
+update-database –verbose
+```
+NOTE: Must be...
+Using project 'Kitchen\Infrastructure\Kitchen.DataAccess'.
+Using startup project 'Kitchen\Presentation\Kitchen.Api'.
 
 Set multiple start up projects
 

@@ -23,7 +23,7 @@ namespace Kitchen.Api.Controllers
             {
                 var command = new CreateOrderCommand(request);
                 var result = _mediator.Send(command);
-                return Ok(result);
+                return Ok(result.Result);
             }
             catch (Exception ex)
             {

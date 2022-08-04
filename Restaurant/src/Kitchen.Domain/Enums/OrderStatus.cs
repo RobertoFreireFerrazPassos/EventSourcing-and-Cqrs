@@ -1,4 +1,4 @@
-﻿namespace Kitchen.Domain.Dtos
+﻿namespace Kitchen.Domain.Enums
 {
     public enum OrderStatus
     {

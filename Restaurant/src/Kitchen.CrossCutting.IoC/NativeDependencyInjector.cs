@@ -10,6 +10,7 @@ using Kitchen.DataAccess.Repositories;
 using Microsoft.Extensions.Configuration;
 using Kitchen.DataAccess.Context;
 using Microsoft.EntityFrameworkCore;
+using Kitchen.Application.Commands;
 
 namespace Kitchen.CrossCutting.IoC
 {
@@ -17,7 +18,7 @@ namespace Kitchen.CrossCutting.IoC
     {
         public static void RegisterServices(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddMediatR(Assembly.GetExecutingAssembly());
+            services.AddMediatR(typeof(CreateOrderCommand));
 
             // Infra - Data EventSourcing
             services.AddDbContext<EventStoreDbContext>(options =>
