@@ -1,5 +1,4 @@
-﻿using Kitchen.Application.Commands;
-using Kitchen.Domain.Events;
+﻿using Kitchen.Domain.Events;
 using Kitchen.Domain.Events.Base;
 using Kitchen.Domain.Services;
 

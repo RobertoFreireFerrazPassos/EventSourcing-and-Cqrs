@@ -30,6 +30,11 @@ NOTE: Must be...
 Using project 'InventoryStorage\Infrastructure\Inventory.DataAccess'.
 Using startup project 'InventoryStorage\Presentation\Inventory.Api'.
 
+Set multiple start up projects
+
+Inventory Api: http://localhost:3000/swagger/index.html
+
+Kitchen Api: http://localhost:3001/swagger/index.html
 
 Add new item (/Inventory/Update):
 ```json
