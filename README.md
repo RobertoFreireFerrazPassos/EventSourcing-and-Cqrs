@@ -18,13 +18,13 @@ CQRS and Event Sourcing
 1 - Optmize schema before run migrations
 
 
-## Steps to test:
+## Set up enviroment:
 
 Run Docker Compose up to create database server
 
 In Visual Studio, open NuGet Package Manager Console from Tools -> NuGet Package Manager -> Package Manager Console and enter the following command:
 ```
-add-migration Inventory
+add-migration Inventory (already done)
 update-database –verbose
 ```
 NOTE: Must be...
@@ -32,7 +32,7 @@ Using project 'InventoryStorage\Infrastructure\Inventory.DataAccess'.
 Using startup project 'InventoryStorage\Presentation\Inventory.Api'.
 
 ```
-add-migration Kitchen
+add-migration Kitchen (already done)
 update-database –verbose
 ```
 NOTE: Must be...
@@ -44,6 +44,24 @@ Set multiple start up projects
 Inventory Api: http://localhost:3000/swagger/index.html
 
 Kitchen Api: http://localhost:3001/swagger/index.html
+
+PgAdmin for manage postgreSQL:
+http://localhost:16543/
+
+look at docker compose file for PgAdmin authentication
+
+Click in Add new server
+
+```
+Server name: postgres-db
+Host Name: postgres-db
+Maintenance database: postgres
+Port: 5432
+Username: simha
+Password: Postgres2019!
+```
+
+## Steps to test:
 
 Add new item (/Inventory/Update):
 ```json
@@ -170,19 +188,27 @@ The result will be:
 
 # References:
 
-https://github.com/evgeniy-khist/postgresql-event-sourcing/tree/v2
-
 https://www.jobsity.com/blog/getting-started-with-background-tasks-in-asp.net-core-webapi
 
 https://medium.com/medialesson/run-and-manage-periodic-background-tasks-in-asp-net-core-6-with-c-578a31f4b7a3
 
 https://www.c-sharpcorner.com/article/two-phase-commit-protocol-in-c-sharp/#:~:text=In%20this%20article%2C%20you%20will,phase%20commit%20protocol%20in%20C%23.&text=Two%20phase%20commit%20protocol%20is,single%20transaction%20or%20discrete%20transaction.
 
-https://www.youtube.com/watch?v=YzOBrVlthMk&ab_channel=NickChapsas
+Project:
+
+https://github.com/evgeniy-khist/postgresql-event-sourcing/tree/v2
+
+Mediatr:
 
 https://henriquemauri.net/mediatr-no-net-6-0/
 
+https://www.youtube.com/watch?v=YzOBrVlthMk&ab_channel=NickChapsas
+
+EntityFramework
+
 https://www.entityframeworktutorial.net/efcore/entity-framework-core-console-application.aspx
+
+https://www.npgsql.org/efcore/mapping/json.html?tabs=data-annotations%2Cpoco
 
 Optimistic Concurrency:
 

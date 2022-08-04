@@ -22,7 +22,7 @@ namespace Kitchen.CrossCutting.IoC
 
             // Infra - Data EventSourcing
             services.AddDbContext<EventStoreDbContext>(options =>
-                options.UseSqlServer(configuration.GetConnectionString("mssqlserverConnection")));
+                options.UseNpgsql(configuration.GetConnectionString("mssqlserverConnection")));
 
             services.AddScoped<IEventStoreRepository, EventStoreRepository>();
             services.AddScoped<IEventStore, SqlEventStore>();          

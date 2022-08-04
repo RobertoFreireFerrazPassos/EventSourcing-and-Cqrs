@@ -7,7 +7,30 @@ services:
     ports:
       - "1433:1433"
     volumes:
-      - C:\dockervolumes\eventsourcing:/var/opt/mssql/data 
+      - C:\dockervolumes\eventsourcing\sqlserversql:/var/opt/mssql/data 
     environment:
       SA_PASSWORD: "1Tp1TBD46"
       ACCEPT_EULA: "Y"
+
+  postgres-db:
+    container_name: postgres-db
+    image: postgres
+    ports:
+      - "15432:5432"
+    volumes:
+      - C:\dockervolumes\eventsourcing\postgresql:/var/lib/postgresql/data 
+    environment:
+      POSTGRES_PASSWORD: "Postgres2019!"
+      POSTGRES_USER: "simha"
+      POSTGRES_DB : "Kitchen"
+
+  pgadmin:
+    container_name: pgadmin
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "robertofreireferrazpassos@yahoo.com.br"
+      PGADMIN_DEFAULT_PASSWORD: "PgAdmin2019!"
+    ports:
+      - "16543:80"
+    depends_on:
+      - schooldb
