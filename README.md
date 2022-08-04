@@ -13,9 +13,33 @@ CQRS and Event Sourcing
 </p>
 
 
-## Next steps:
+To do list:
 
-1 - Optmize schema before run migrations
+- Optmize entity framework migrations before update dabase
+
+- Create OutBoxHandler using BackgroundService 
+
+https://makolyte.com/aspdotnet-how-to-use-a-backgroundservice-for-long-running-and-periodic-tasks/
+
+- Create table to store items in kitchen while being used in a order
+
+- Create indexes
+
+https://makolyte.com/ef-core-how-to-add-indexes/
+
+- Understand and implement Circuit breaker with Polly to Read Database
+
+https://makolyte.com/csharp-circuit-breaker-with-polly/
+
+- Implement Kafka to comunicate between OutboxHandler and Receipts Api
+
+- Configuring how long an HttpClient connection will stay open from Kitchen api to Inventory api
+
+https://makolyte.com/csharp-configuring-how-long-an-httpclient-connection-will-stay-open/
+
+- Read EF core articles and try to implement
+
+https://makolyte.com/category/csharp/ef-core/
 
 
 ## Set up enviroment:
