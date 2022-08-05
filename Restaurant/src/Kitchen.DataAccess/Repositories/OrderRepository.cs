@@ -1,5 +1,6 @@
 ﻿using Kitchen.DataAccess.Context;
 using Kitchen.Domain.Entities;
+using Kitchen.Domain.Enums;
 using Kitchen.Domain.Events.Entities;
 using Kitchen.Domain.Repositories;
 
@@ -21,6 +22,18 @@ namespace Kitchen.DataAccess.Repositories
             _eventStoreDbContext.Orders.Add(orderEntity);
 
             _eventStoreDbContext.SaveChanges();
+        }
+
+        public TableEntity? GetTablesByTableId(int table)
+        {
+            return _eventStoreDbContext.Tables.
+                FirstOrDefault(t => t.Table == table);
+        }
+
+        public OrderEntity? GetActiveOrder(int table)
+        {
+            return _eventStoreDbContext.Orders
+                .FirstOrDefault(o => o.Table == table && o.Status == OrderStatus.Active);
         }
     }
 }
