@@ -1,4 +1,4 @@
-﻿using Kitchen.Domain.Events.Base;
+﻿using Kitchen.Domain.Entities.Base;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Kitchen.Domain.Events.Entities
@@ -9,12 +9,14 @@ namespace Kitchen.Domain.Events.Entities
 
         [Column(TypeName = "jsonb")]
         public string Data { get; private set; }
+
         protected StoredEvent() { }
-        public StoredEvent(Event theEvent, string data)
+
+        public StoredEvent(string messageType, Guid aggregateId, string data)
         {
             Id = Guid.NewGuid();
-            AggregateId = theEvent.AggregateId;
-            MessageType = theEvent.MessageType;
+            AggregateId = aggregateId;
+            MessageType = messageType;
             Data = data;
         }
     }

@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram id="WDvoBEK5SS2Z9FpVWY0S" name="Page-1">
-        <mxGraphModel dx="1382" dy="419" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+        <mxGraphModel dx="953" dy="289" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -94,12 +94,12 @@
                         <mxPoint x="300" y="280" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="54" value="3. Update read model" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="53" vertex="1" connectable="0">
+                <mxCell id="54" value="3. Update model" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="53" vertex="1" connectable="0">
                     <mxGeometry x="0.6324" y="-1" relative="1" as="geometry">
                         <mxPoint x="-80" y="-19" as="offset"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="37" value="Event Store Database" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;" parent="1" vertex="1">
+                <mxCell id="37" value="Events" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;" parent="1" vertex="1">
                     <mxGeometry x="360" y="150" width="120" height="80" as="geometry"/>
                 </mxCell>
                 <mxCell id="43" style="edgeStyle=none;html=1;exitX=1.066;exitY=0.449;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.562;entryY=0.018;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="38" target="42" edge="1">
@@ -131,7 +131,7 @@
                         <mxPoint x="25" y="-18" as="offset"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="52" value="Read Database" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;" parent="1" vertex="1">
+                <mxCell id="52" value="Entities" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;" parent="1" vertex="1">
                     <mxGeometry x="360" y="240" width="120" height="110" as="geometry"/>
                 </mxCell>
             </root>

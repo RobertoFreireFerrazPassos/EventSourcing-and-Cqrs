@@ -1,14 +1,14 @@
 ﻿using Kitchen.Domain.Dtos;
+using Kitchen.Domain.Entities.Base;
 using Kitchen.Domain.Enums;
 
-namespace Kitchen.Application.DataContracts.Responses
+namespace Kitchen.Domain.Entities
 {
-    public class OrderResponse
+    public class OrderEntity : Entity
     {
-        public Guid Id { get; set; }
         public Guid AggregateId { get; set; }
         public int Table { get; set; }
         public OrderStatus Status { get; set; }
-        public IEnumerable<Item> Items { get; set; }
+        public IEnumerable<ItemEntity> Items { get; set; }
     }
 }

@@ -2,10 +2,7 @@
 using Kitchen.Application.Services;
 using Kitchen.Domain.Services;
 using Microsoft.Extensions.DependencyInjection;
-using System.Reflection;
 using Kitchen.Domain.Repositories;
-using Kitchen.DataAccess.EventSourcing;
-using Kitchen.Domain.Events.Base;
 using Kitchen.DataAccess.Repositories;
 using Microsoft.Extensions.Configuration;
 using Kitchen.DataAccess.Context;
@@ -20,12 +17,11 @@ namespace Kitchen.CrossCutting.IoC
         {
             services.AddMediatR(typeof(CreateOrderCommand));
 
-            // Infra - Data EventSourcing
-            services.AddDbContext<EventStoreDbContext>(options =>
-                options.UseNpgsql(configuration.GetConnectionString("mssqlserverConnection")));
+            // Infra - Data 
+            services.AddScoped<IOrderRepository, OrdersRepository> ();
 
-            services.AddScoped<IEventStoreRepository, EventStoreRepository>();
-            services.AddScoped<IEventStore, SqlEventStore>();          
+            services.AddDbContext<EventStoreDbContext>(options =>
+                options.UseNpgsql(configuration.GetConnectionString("mssqlserverConnection")));                 
 
             // Application
             services.AddScoped<IOrderService, OrderService>();

@@ -13,36 +13,7 @@ CQRS and Event Sourcing
 </p>
 
 
-To do list:
-
-- Optmize entity framework migrations before update dabase
-
-- Create OutBoxHandler using BackgroundService 
-
-https://makolyte.com/aspdotnet-how-to-use-a-backgroundservice-for-long-running-and-periodic-tasks/
-
-- Create table to store items in kitchen while being used in a order
-
-- Create indexes
-
-https://makolyte.com/ef-core-how-to-add-indexes/
-
-- Understand and implement Circuit breaker with Polly to Read Database
-
-https://makolyte.com/csharp-circuit-breaker-with-polly/
-
-- Implement Kafka to comunicate between OutboxHandler and Receipts Api
-
-- Configuring how long an HttpClient connection will stay open from Kitchen api to Inventory api
-
-https://makolyte.com/csharp-configuring-how-long-an-httpclient-connection-will-stay-open/
-
-- Read EF core articles and try to implement
-
-https://makolyte.com/category/csharp/ef-core/
-
-
-## Set up enviroment:
+# Set up enviroment:
 
 Run Docker Compose up to create database server
 
@@ -83,6 +54,21 @@ Maintenance database: postgres
 Port: 5432
 Username: simha
 Password: Postgres2019!
+```
+
+Queries:
+```
+SELECT "Id", "Name", "Quantity", "OrderEntityId"
+	FROM public."Items";
+
+SELECT "Id", "Data", "MessageType", "AggregateId", "Timestamp"
+	FROM public."StoredEvents";
+
+SELECT "Id", "Table", "CurrentAggregateId"
+	FROM public."Tables";
+    
+SELECT "Id", "AggregateId", "Table", "Status"
+	FROM public."Orders";
 ```
 
 ## Steps to test:
@@ -209,6 +195,34 @@ The result will be:
   ]
 }
 ```
+
+# To do list:
+
+- Optmize entity framework migrations before update dabase
+
+- Create OutBoxHandler using BackgroundService 
+
+https://makolyte.com/aspdotnet-how-to-use-a-backgroundservice-for-long-running-and-periodic-tasks/
+
+- Create table to store items in kitchen while being used in a order
+
+- Create indexes
+
+https://makolyte.com/ef-core-how-to-add-indexes/
+
+- Understand and implement Circuit breaker with Polly to Read Database
+
+https://makolyte.com/csharp-circuit-breaker-with-polly/
+
+- Implement Kafka to comunicate between OutboxHandler and Receipts Api
+
+- Configuring how long an HttpClient connection will stay open from Kitchen api to Inventory api
+
+https://makolyte.com/csharp-configuring-how-long-an-httpclient-connection-will-stay-open/
+
+- Read EF core articles and try to implement
+
+https://makolyte.com/category/csharp/ef-core/
 
 # References:
 

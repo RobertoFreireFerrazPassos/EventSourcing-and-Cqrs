@@ -1,10 +1,11 @@
-﻿using Kitchen.Domain.Events;
+﻿using Kitchen.Domain.Entities;
+using Kitchen.Domain.Events;
 
 namespace Kitchen.Domain.Services
 {
     public interface IOrderService
     {
-        OrderCreatedEvent CreateOrder(OrderCreatedEvent request);
+        OrderEntity CreateOrder(OrderCreatedCommand request);
         void GetOrder();
     }
 }
