@@ -31,19 +31,6 @@ namespace Kitchen.Api.Controllers
             }
         }
 
-        [HttpPut("Update")]
-        public async Task<IActionResult> UpdateOrder(UpdateOrderRequest request)
-        {
-            try
-            {
-                return Ok();
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
-        }
-
         [HttpPatch("Cancel/{tableid:int}")]
         public async Task<IActionResult> CancelOrder(int tableid)
         {
