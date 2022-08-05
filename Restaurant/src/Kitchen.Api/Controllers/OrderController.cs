@@ -36,6 +36,7 @@ namespace Kitchen.Api.Controllers
         {
             try
             {
+                // Can cancel if order is active
                 return Ok();
             }
             catch (Exception ex)
@@ -64,6 +65,7 @@ namespace Kitchen.Api.Controllers
         {
             try
             {
+                // Can reserve if order is active
                 return Ok();
             }
             catch (Exception ex)
@@ -77,6 +79,7 @@ namespace Kitchen.Api.Controllers
         {
             try
             {
+                // Can complete if order is reserved
                 return Ok();
             }
             catch (Exception ex)
