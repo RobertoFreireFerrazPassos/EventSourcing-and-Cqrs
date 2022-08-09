@@ -1,6 +1,4 @@
-﻿using Kitchen.Domain.Dtos;
-
-namespace Kitchen.Domain.Events
+﻿namespace Kitchen.Domain.Dtos
 {
     public class OrderCreatedCommand
     {

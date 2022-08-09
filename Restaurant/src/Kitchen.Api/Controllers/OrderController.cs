@@ -65,6 +65,9 @@ namespace Kitchen.Api.Controllers
         {
             try
             {
+                var command = new ReserveOrderCommand(tableid);
+                var result = _mediator.Send(command);
+                return Ok(result.Result);
                 // Can reserve if order is active
                 return Ok();
             }

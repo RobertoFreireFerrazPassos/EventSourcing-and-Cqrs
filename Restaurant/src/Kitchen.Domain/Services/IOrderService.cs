@@ -1,5 +1,5 @@
-﻿using Kitchen.Domain.Entities;
-using Kitchen.Domain.Events;
+﻿using Kitchen.Domain.Dtos;
+using Kitchen.Domain.Entities;
 
 namespace Kitchen.Domain.Services
 {
@@ -7,5 +7,6 @@ namespace Kitchen.Domain.Services
     {
         OrderEntity CreateOrder(OrderCreatedCommand request);
         void GetOrder();
+        bool ReserveOrder(OrderReservedCommand orderReservedCommand);
     }
 }

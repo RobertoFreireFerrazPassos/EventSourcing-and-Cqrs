@@ -1,7 +1,6 @@
 ﻿using Kitchen.Domain.Dtos;
 using Kitchen.Domain.Entities;
 using Kitchen.Domain.Enums;
-using Kitchen.Domain.Events;
 using Kitchen.Domain.Events.Entities;
 using Kitchen.Domain.Repositories;
 using Kitchen.Domain.Services;
@@ -64,6 +63,32 @@ namespace Kitchen.Application.Services
         public void GetOrder()
         {
             
+        }
+        public bool ReserveOrder(OrderReservedCommand orderReservedCommand)
+        {
+            // get and remove item from Inventory Storage and save it in a new entity Item table in Kitchen database
+
+            var activeOrder = _eventStoreRepository.GetActiveOrder(
+                        orderReservedCommand.Table
+                    );
+
+            if (activeOrder is null)
+            {
+                return false;
+            }
+
+            activeOrder.Status = OrderStatus.Reserved;
+
+            var serializedData = JsonConvert.SerializeObject(orderReservedCommand);
+
+            var storedEvent = new StoredEvent(
+                orderReservedCommand.GetType().Name,
+                activeOrder.AggregateId,
+                serializedData);
+
+            _eventStoreRepository.UpdateOrder(storedEvent, activeOrder);
+
+            return true;
         }
     }
 }

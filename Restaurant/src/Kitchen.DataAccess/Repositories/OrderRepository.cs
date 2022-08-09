@@ -24,6 +24,14 @@ namespace Kitchen.DataAccess.Repositories
             _eventStoreDbContext.SaveChanges();
         }
 
+        public void UpdateOrder(StoredEvent storedEvent, OrderEntity orderEntity)
+        {
+            _eventStoreDbContext.StoredEvents.Add(storedEvent);
+            _eventStoreDbContext.Orders.Update(orderEntity);
+
+            _eventStoreDbContext.SaveChanges();
+        }
+
         public TableEntity? GetTablesByTableId(int table)
         {
             return _eventStoreDbContext.Tables.

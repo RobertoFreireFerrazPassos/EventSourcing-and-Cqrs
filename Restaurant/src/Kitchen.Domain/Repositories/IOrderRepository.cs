@@ -6,9 +6,8 @@ namespace Kitchen.Domain.Repositories
     public interface IOrderRepository
     {
         void CreateOrder(StoredEvent storedEvent, TableEntity table, OrderEntity orderEntity);
-
+        void UpdateOrder(StoredEvent storedEvent, OrderEntity orderEntity);
         public TableEntity? GetTablesByTableId(int table);
-
         OrderEntity? GetActiveOrder(int table);
     }
 }
