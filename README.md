@@ -232,6 +232,10 @@ https://medium.com/medialesson/run-and-manage-periodic-background-tasks-in-asp-n
 
 https://www.c-sharpcorner.com/article/two-phase-commit-protocol-in-c-sharp/#:~:text=In%20this%20article%2C%20you%20will,phase%20commit%20protocol%20in%20C%23.&text=Two%20phase%20commit%20protocol%20is,single%20transaction%20or%20discrete%20transaction.
 
+IHttpClientFactory:
+
+https://docs.microsoft.com/pt-br/dotnet/architecture/microservices/implement-resilient-applications/use-httpclientfactory-to-implement-resilient-http-requests
+
 Project:
 
 https://github.com/evgeniy-khist/postgresql-event-sourcing/tree/v2

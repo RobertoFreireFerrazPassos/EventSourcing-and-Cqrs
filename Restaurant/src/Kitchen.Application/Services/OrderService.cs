@@ -1,4 +1,5 @@
-﻿using Kitchen.Domain.Dtos;
+﻿using Kitchen.Domain.Clients;
+using Kitchen.Domain.Dtos;
 using Kitchen.Domain.Entities;
 using Kitchen.Domain.Enums;
 using Kitchen.Domain.Events.Entities;
@@ -12,9 +13,18 @@ namespace Kitchen.Application.Services
     {
         private readonly IOrderRepository _eventStoreRepository;
 
-        public OrderService(IOrderRepository eventStoreRepository)
+        private readonly IItemFromInventoryRepository _itemFromInventoryRepository;
+
+        private readonly IInventoryClient _inventoryClient;        
+
+        public OrderService(
+            IOrderRepository eventStoreRepository,
+            IItemFromInventoryRepository itemFromInventoryRepository,
+            IInventoryClient inventoryClient)
         {
             _eventStoreRepository = eventStoreRepository;
+            _itemFromInventoryRepository = itemFromInventoryRepository;
+            _inventoryClient = inventoryClient;            
         }
 
         public OrderEntity CreateOrder(OrderCreatedCommand orderCreatedCommand)
@@ -66,8 +76,6 @@ namespace Kitchen.Application.Services
         }
         public bool ReserveOrder(OrderReservedCommand orderReservedCommand)
         {
-            // get and remove item from Inventory Storage and save it in a new entity Item table in Kitchen database
-
             var activeOrder = _eventStoreRepository.GetActiveOrder(
                         orderReservedCommand.Table
                     );
@@ -78,6 +86,22 @@ namespace Kitchen.Application.Services
             }
 
             activeOrder.Status = OrderStatus.Reserved;
+
+            var gotItemsFromInventory = _inventoryClient.GetItems(activeOrder.Items).Result;
+
+            if (!gotItemsFromInventory)
+            {
+                return false;
+            }
+
+            var listToUpdate = activeOrder.Items.Select(i => new ItemCopiedFromInventoryEntity()
+            {
+                Id = i.Id,
+                Name = i.Name,
+                Quantity = i.Quantity
+            });              
+
+            _itemFromInventoryRepository.Update(listToUpdate);
 
             var serializedData = JsonConvert.SerializeObject(orderReservedCommand);
 

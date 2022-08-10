@@ -12,6 +12,8 @@ namespace Kitchen.DataAccess.Context
 
         public DbSet<ItemEntity> Items { get; set; }
 
+        public DbSet<ItemCopiedFromInventoryEntity> ItemsCopiedFromInventoryEntity { get; set; }
+
         public DbSet<OrderEntity> Orders { get; set; }        
 
         public EventStoreDbContext(DbContextOptions<EventStoreDbContext> options) : base(options)
