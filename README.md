@@ -268,12 +268,7 @@ Check order using the table number
 
 https://makolyte.com/aspdotnet-how-to-use-a-backgroundservice-for-long-running-and-periodic-tasks/
 
-
-- Create indexes
-
-https://makolyte.com/ef-core-how-to-add-indexes/
-
-- Understand and implement Circuit breaker with Polly to Read Database
+- Understand and implement Circuit breaker with Polly
 
 https://makolyte.com/csharp-circuit-breaker-with-polly/
 
