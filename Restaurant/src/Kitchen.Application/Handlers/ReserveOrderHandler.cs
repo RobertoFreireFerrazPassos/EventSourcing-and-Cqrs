@@ -15,7 +15,7 @@ namespace Kitchen.Application.Handlers
 
         public Task<bool> Handle(ReserveOrderCommand command, CancellationToken cancellationToken)
         {
-            var orderReservedCommand = new OrderReservedCommand(command.Tableid);
+            var orderReservedCommand = new OrderReservedCommand(command.OrderId);
             return Task.FromResult(_orderService.ReserveOrder(orderReservedCommand));
         }
     }

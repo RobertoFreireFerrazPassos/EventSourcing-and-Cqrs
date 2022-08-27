@@ -2,9 +2,8 @@
 
 namespace Kitchen.Domain.Entities
 {
-    public class ItemEntity : Entity
+    public class MenuItemEntity : Entity
     {
         public string Name { get; set; }
-        public int Quantity { get; set; }
     }
 }

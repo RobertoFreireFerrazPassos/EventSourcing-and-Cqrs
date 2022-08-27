@@ -1,47 +1,52 @@
 ﻿using Kitchen.DataAccess.Context;
 using Kitchen.Domain.Entities;
 using Kitchen.Domain.Enums;
-using Kitchen.Domain.Events.Entities;
 using Kitchen.Domain.Repositories;
 
 namespace Kitchen.DataAccess.Repositories
 {
     public class OrdersRepository : IOrderRepository
     {
-        private readonly EventStoreDbContext _eventStoreDbContext;
+        private readonly KitchenDbContext _kitchenDbContext;
 
-        public OrdersRepository(EventStoreDbContext eventStoreDbContext)
+        public OrdersRepository(KitchenDbContext eventStoreDbContext)
         {
-            _eventStoreDbContext = eventStoreDbContext;
+            _kitchenDbContext = eventStoreDbContext;
         }
 
-        public void CreateOrder(StoredEvent storedEvent, TableEntity table, OrderEntity orderEntity)
+        public void CreateOrder(StoredEventEntity storedEvent, TableEntity table, OrderEntity orderEntity)
         {
-            _eventStoreDbContext.StoredEvents.Add(storedEvent);
-            _eventStoreDbContext.Tables.Update(table);
-            _eventStoreDbContext.Orders.Add(orderEntity);
+            _kitchenDbContext.StoredEvents.Add(storedEvent);
+            _kitchenDbContext.Tables.Update(table);
+            _kitchenDbContext.Orders.Add(orderEntity);
 
-            _eventStoreDbContext.SaveChanges();
+            _kitchenDbContext.SaveChanges();
         }
 
-        public void UpdateOrder(StoredEvent storedEvent, OrderEntity orderEntity)
+        public void UpdateOrder(StoredEventEntity storedEvent, OrderEntity orderEntity)
         {
-            _eventStoreDbContext.StoredEvents.Add(storedEvent);
-            _eventStoreDbContext.Orders.Update(orderEntity);
+            _kitchenDbContext.StoredEvents.Add(storedEvent);
+            _kitchenDbContext.Orders.Update(orderEntity);
 
-            _eventStoreDbContext.SaveChanges();
+            _kitchenDbContext.SaveChanges();
         }
 
-        public TableEntity? GetTablesByTableId(int table)
+        public TableEntity? GetTable(int number)
         {
-            return _eventStoreDbContext.Tables.
-                FirstOrDefault(t => t.Table == table);
+            return _kitchenDbContext.Tables.
+                FirstOrDefault(t => t.Number == number);
         }
 
         public OrderEntity? GetActiveOrder(int table)
         {
-            return _eventStoreDbContext.Orders
+            return _kitchenDbContext.Orders
                 .FirstOrDefault(o => o.Table == table && o.Status == OrderStatus.Active);
+        }
+
+        public OrderEntity? GetOrder(Guid OrderId)
+        {
+            return _kitchenDbContext.Orders
+                .FirstOrDefault(o => o.Id == OrderId);
         }
     }
 }

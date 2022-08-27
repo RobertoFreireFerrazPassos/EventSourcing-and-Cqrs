@@ -31,6 +31,21 @@ namespace Kitchen.Api.Controllers
             }
         }
 
+        [HttpPut("Reserve/{orderId:Guid}")]
+        public async Task<IActionResult> ReserveOrder(Guid orderId)
+        {
+            try
+            {
+                var command = new ReserveOrderCommand(orderId);
+                var result = _mediator.Send(command);
+                return Ok(result.Result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
         [HttpPatch("Cancel/{tableid:int}")]
         public async Task<IActionResult> CancelOrder(int tableid)
         {
@@ -59,23 +74,7 @@ namespace Kitchen.Api.Controllers
                 return BadRequest(ex.Message);
             }
         }
-
-        [HttpPut("Reserve/{tableid:int}")]
-        public async Task<IActionResult> ReserveOrder(int tableid)
-        {
-            try
-            {
-                var command = new ReserveOrderCommand(tableid);
-                var result = _mediator.Send(command);
-                return Ok(result.Result);
-                // Can reserve if order is active
-                return Ok();
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
-        }
+        
 
         [HttpGet("Complete/{tableid:int}")]
         public async Task<IActionResult> CompleteOrder(int tableid)

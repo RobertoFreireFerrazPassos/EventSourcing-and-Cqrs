@@ -15,7 +15,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Kitchen.Application\Kitchen.Application.csproj" />
-    <ProjectReference Include="..\Kitchen.Client\Kitchen.Client.csproj" />
     <ProjectReference Include="..\Kitchen.DataAccess\Kitchen.DataAccess.csproj" />
     <ProjectReference Include="..\Kitchen.Domain\Kitchen.Domain.csproj" />
   </ItemGroup>

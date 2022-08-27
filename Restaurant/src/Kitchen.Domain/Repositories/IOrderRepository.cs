@@ -1,13 +1,13 @@
 ﻿using Kitchen.Domain.Entities;
-using Kitchen.Domain.Events.Entities;
 
 namespace Kitchen.Domain.Repositories
 {
     public interface IOrderRepository
     {
-        void CreateOrder(StoredEvent storedEvent, TableEntity table, OrderEntity orderEntity);
-        void UpdateOrder(StoredEvent storedEvent, OrderEntity orderEntity);
-        public TableEntity? GetTablesByTableId(int table);
+        void CreateOrder(StoredEventEntity storedEvent, TableEntity table, OrderEntity orderEntity);
+        void UpdateOrder(StoredEventEntity storedEvent, OrderEntity orderEntity);
+        public TableEntity? GetTable(int number);
         OrderEntity? GetActiveOrder(int table);
+        OrderEntity? GetOrder(Guid OrderId);
     }
 }

@@ -1,8 +1,6 @@
-﻿using Kitchen.Domain.Clients;
-using Kitchen.Domain.Dtos;
+﻿using Kitchen.Domain.Dtos;
 using Kitchen.Domain.Entities;
 using Kitchen.Domain.Enums;
-using Kitchen.Domain.Events.Entities;
 using Kitchen.Domain.Repositories;
 using Kitchen.Domain.Services;
 using Newtonsoft.Json;
@@ -11,38 +9,36 @@ namespace Kitchen.Application.Services
 {
     public class OrderService : IOrderService
     {
-        private readonly IOrderRepository _eventStoreRepository;
+        private readonly IOrderRepository _orderRepository;      
 
-        private readonly IItemFromInventoryRepository _itemFromInventoryRepository;
-
-        private readonly IInventoryClient _inventoryClient;        
-
-        public OrderService(
-            IOrderRepository eventStoreRepository,
-            IItemFromInventoryRepository itemFromInventoryRepository,
-            IInventoryClient inventoryClient)
+        public OrderService(IOrderRepository orderRepository)
         {
-            _eventStoreRepository = eventStoreRepository;
-            _itemFromInventoryRepository = itemFromInventoryRepository;
-            _inventoryClient = inventoryClient;            
+            _orderRepository = orderRepository;          
         }
 
         public OrderEntity CreateOrder(OrderCreatedCommand orderCreatedCommand)
         {
+            var table = _orderRepository.GetTable(orderCreatedCommand.Table);
+
+            if (table is null)
+            {
+                throw new Exception("There is not " + orderCreatedCommand.Table);
+            }
+
             var serializedData = JsonConvert.SerializeObject(orderCreatedCommand);
 
-            var storedEvent = new StoredEvent(
+            var storedEvent = new StoredEventEntity(
                 orderCreatedCommand.GetType().Name,
                 Guid.NewGuid(),
                 serializedData);
 
-            var activeOrder = _eventStoreRepository.GetActiveOrder(
+            var activeOrder = _orderRepository.GetActiveOrder(
                         orderCreatedCommand.Table
                     );
 
             if (activeOrder is not null)
             {
-                throw new Exception("Active order for table " + orderCreatedCommand.Table);
+                throw new Exception("There is still active order(s) for table " + orderCreatedCommand.Table);
             }
 
             var orderEntity = new OrderEntity()
@@ -50,22 +46,19 @@ namespace Kitchen.Application.Services
                 AggregateId = storedEvent.AggregateId,
                 Table = orderCreatedCommand.Table,
                 Status = OrderStatus.Active,
-                Items = orderCreatedCommand.Items.Select(i => new ItemEntity()
+                Items = orderCreatedCommand.Items.Select(i => new OrderItemEntity()
                 {
-                    Name = i.Name,
+                    MenuItem = new MenuItemEntity()
+                    {
+                        Name = i.Name
+                    },                    
                     Quantity = i.Quantity
                 }).ToList()
             };
 
-            var table = _eventStoreRepository.GetTablesByTableId(orderCreatedCommand.Table);
+            table.CurrentAggregateId = storedEvent.AggregateId;
 
-            table = table ?? new TableEntity()
-            {
-                Table = orderCreatedCommand.Table,
-                CurrentAggregateId = storedEvent.AggregateId
-            };            
-
-            _eventStoreRepository.CreateOrder(storedEvent, table, orderEntity);
+            _orderRepository.CreateOrder(storedEvent, table, orderEntity);
 
             return orderEntity;
         }
@@ -74,43 +67,32 @@ namespace Kitchen.Application.Services
         {
             
         }
+
         public bool ReserveOrder(OrderReservedCommand orderReservedCommand)
         {
-            var activeOrder = _eventStoreRepository.GetActiveOrder(
-                        orderReservedCommand.Table
-                    );
 
-            if (activeOrder is null)
+            var order = _orderRepository.GetOrder(orderReservedCommand.OrderId);
+
+            if (order is null)
             {
-                return false;
+                throw new Exception("Order " + orderReservedCommand.OrderId + " doesn't exist.");
             }
 
-            activeOrder.Status = OrderStatus.Reserved;
-
-            var gotItemsFromInventory = _inventoryClient.GetItems(activeOrder.Items).Result;
-
-            if (!gotItemsFromInventory)
+            if (order.Status == OrderStatus.Active || order.Status == OrderStatus.Reserved)
             {
-                return false;
+                throw new Exception("Order " + orderReservedCommand.OrderId + " with status " + order.Status + " cannot be reserved");
             }
 
-            var listToUpdate = activeOrder.Items.Select(i => new ItemCopiedFromInventoryEntity()
-            {
-                Id = i.Id,
-                Name = i.Name,
-                Quantity = i.Quantity
-            });              
-
-            _itemFromInventoryRepository.Update(listToUpdate);
+            order.Status = OrderStatus.Reserved;
 
             var serializedData = JsonConvert.SerializeObject(orderReservedCommand);
 
-            var storedEvent = new StoredEvent(
+            var storedEvent = new StoredEventEntity(
                 orderReservedCommand.GetType().Name,
-                activeOrder.AggregateId,
+                order.AggregateId,
                 serializedData);
 
-            _eventStoreRepository.UpdateOrder(storedEvent, activeOrder);
+            _orderRepository.UpdateOrder(storedEvent, order);
 
             return true;
         }

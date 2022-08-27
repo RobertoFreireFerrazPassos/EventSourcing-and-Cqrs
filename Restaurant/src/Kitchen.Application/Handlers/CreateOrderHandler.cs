@@ -2,7 +2,6 @@
 using Kitchen.Application.DataContracts.Responses;
 using Kitchen.Domain.Dtos;
 using Kitchen.Domain.Enums;
-using Kitchen.Domain.Events;
 using Kitchen.Domain.Services;
 using MediatR;
 
@@ -18,8 +17,8 @@ namespace Kitchen.Application.Handlers
 
         public Task<OrderResponse> Handle(CreateOrderCommand command, CancellationToken cancellationToken)
         {
-            var orderCreatedEvent = new OrderCreatedCommand(command.Request.Table, command.Request.Items);
-            var result = _orderService.CreateOrder(orderCreatedEvent);
+            var orderCreatedCommand = new OrderCreatedCommand(command.Request.Table, command.Request.Items);
+            var result = _orderService.CreateOrder(orderCreatedCommand);
 
             return Task.FromResult(new OrderResponse()
             {
@@ -28,7 +27,7 @@ namespace Kitchen.Application.Handlers
                 Status = OrderStatus.Active,
                 Items = result.Items.Select(i => new Item()
                 {
-                    Name = i.Name,
+                    Name = i.MenuItem.Name,
                     Quantity = i.Quantity
                 }).ToList()
             });

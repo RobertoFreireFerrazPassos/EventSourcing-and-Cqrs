@@ -2,11 +2,11 @@
 {
     public class OrderReservedCommand
     {
-        public int Table { get; set; }
+        public Guid OrderId { get; set; }
 
-        public OrderReservedCommand(int table)
+        public OrderReservedCommand(Guid orderId)
         {
-            Table = table;
+            OrderId = orderId;
         }
     }
 }

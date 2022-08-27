@@ -1,18 +1,18 @@
 ﻿using Kitchen.Domain.Entities.Base;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Kitchen.Domain.Events.Entities
+namespace Kitchen.Domain.Entities
 {
-    public class StoredEvent : Event
+    public class StoredEventEntity : Event
     {
         public Guid Id { get; private set; }
 
         [Column(TypeName = "jsonb")]
         public string Data { get; private set; }
 
-        protected StoredEvent() { }
+        protected StoredEventEntity() { }
 
-        public StoredEvent(string messageType, Guid aggregateId, string data)
+        public StoredEventEntity(string messageType, Guid aggregateId, string data)
         {
             Id = Guid.NewGuid();
             AggregateId = aggregateId;

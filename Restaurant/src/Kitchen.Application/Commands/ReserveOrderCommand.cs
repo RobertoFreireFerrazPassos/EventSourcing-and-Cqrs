@@ -4,11 +4,11 @@ namespace Kitchen.Application.Commands
 {
     public class ReserveOrderCommand : IRequest<bool>
     {
-        public int Tableid { get; set; }
+        public Guid OrderId { get; set; }
 
-        public ReserveOrderCommand(int tableid)
+        public ReserveOrderCommand(Guid orderId)
         {
-            Tableid = tableid;
+            OrderId = orderId;
         }
     }
 }

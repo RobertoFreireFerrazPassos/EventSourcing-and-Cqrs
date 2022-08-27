@@ -10,8 +10,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace Kitchen.DataAccess.Migrations
 {
-    [DbContext(typeof(EventStoreDbContext))]
-    partial class EventStoreDbContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(KitchenDbContext))]
+    partial class KitchenDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
@@ -22,28 +22,7 @@ namespace Kitchen.DataAccess.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("Kitchen.Domain.Entities.ItemCopiedFromInventoryEntity", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("ItemIdFromInventory")
-                        .HasColumnType("uuid");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<int>("Quantity")
-                        .HasColumnType("integer");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("ItemsCopiedFromInventoryEntity");
-                });
-
-            modelBuilder.Entity("Kitchen.Domain.Entities.ItemEntity", b =>
+            modelBuilder.Entity("Kitchen.Domain.Entities.MenuItemEntity", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -53,17 +32,16 @@ namespace Kitchen.DataAccess.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<Guid?>("OrderEntityId")
-                        .HasColumnType("uuid");
-
-                    b.Property<int>("Quantity")
-                        .HasColumnType("integer");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("OrderEntityId");
+                    b.ToTable("MenuItems");
 
-                    b.ToTable("Items");
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("6a950478-6e6c-4c37-a0ce-ed576a3c1ca9"),
+                            Name = "Soup"
+                        });
                 });
 
             modelBuilder.Entity("Kitchen.Domain.Entities.OrderEntity", b =>
@@ -86,24 +64,31 @@ namespace Kitchen.DataAccess.Migrations
                     b.ToTable("Orders");
                 });
 
-            modelBuilder.Entity("Kitchen.Domain.Entities.TableEntity", b =>
+            modelBuilder.Entity("Kitchen.Domain.Entities.OrderItemEntity", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
-                    b.Property<Guid>("CurrentAggregateId")
+                    b.Property<Guid>("MenuItemId")
                         .HasColumnType("uuid");
 
-                    b.Property<int>("Table")
+                    b.Property<Guid?>("OrderEntityId")
+                        .HasColumnType("uuid");
+
+                    b.Property<int>("Quantity")
                         .HasColumnType("integer");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Tables");
+                    b.HasIndex("MenuItemId");
+
+                    b.HasIndex("OrderEntityId");
+
+                    b.ToTable("OrderItemEntity");
                 });
 
-            modelBuilder.Entity("Kitchen.Domain.Events.Entities.StoredEvent", b =>
+            modelBuilder.Entity("Kitchen.Domain.Entities.StoredEventEntity", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -128,11 +113,62 @@ namespace Kitchen.DataAccess.Migrations
                     b.ToTable("StoredEvents");
                 });
 
-            modelBuilder.Entity("Kitchen.Domain.Entities.ItemEntity", b =>
+            modelBuilder.Entity("Kitchen.Domain.Entities.TableEntity", b =>
                 {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("CurrentAggregateId")
+                        .HasColumnType("uuid");
+
+                    b.Property<int>("Number")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Tables");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("ee635106-2f82-428e-a735-1200d3658bee"),
+                            CurrentAggregateId = new Guid("00000000-0000-0000-0000-000000000000"),
+                            Number = 1
+                        },
+                        new
+                        {
+                            Id = new Guid("587b88ea-d396-4b6e-ac27-dea0f8e64d70"),
+                            CurrentAggregateId = new Guid("00000000-0000-0000-0000-000000000000"),
+                            Number = 2
+                        },
+                        new
+                        {
+                            Id = new Guid("7c1a9309-ce3e-459e-82bf-c139317590fb"),
+                            CurrentAggregateId = new Guid("00000000-0000-0000-0000-000000000000"),
+                            Number = 3
+                        },
+                        new
+                        {
+                            Id = new Guid("bf9e0b39-34c3-46e5-936c-192db744859b"),
+                            CurrentAggregateId = new Guid("00000000-0000-0000-0000-000000000000"),
+                            Number = 4
+                        });
+                });
+
+            modelBuilder.Entity("Kitchen.Domain.Entities.OrderItemEntity", b =>
+                {
+                    b.HasOne("Kitchen.Domain.Entities.MenuItemEntity", "MenuItem")
+                        .WithMany()
+                        .HasForeignKey("MenuItemId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Kitchen.Domain.Entities.OrderEntity", null)
                         .WithMany("Items")
                         .HasForeignKey("OrderEntityId");
+
+                    b.Navigation("MenuItem");
                 });
 
             modelBuilder.Entity("Kitchen.Domain.Entities.OrderEntity", b =>

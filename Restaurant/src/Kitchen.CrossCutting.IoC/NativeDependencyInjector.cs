@@ -8,8 +8,6 @@ using Microsoft.Extensions.Configuration;
 using Kitchen.DataAccess.Context;
 using Microsoft.EntityFrameworkCore;
 using Kitchen.Application.Commands;
-using Kitchen.Domain.Clients;
-using Kitchen.Client;
 
 namespace Kitchen.CrossCutting.IoC
 {
@@ -21,16 +19,14 @@ namespace Kitchen.CrossCutting.IoC
 
             // Infra - Data 
             services.AddScoped<IOrderRepository,OrdersRepository> ();
-            services.AddScoped<IItemFromInventoryRepository, ItemFromInventoryRepository>();
+            services.AddScoped<IMenuRepository, MenuRepository>();
 
-            services.AddDbContext<EventStoreDbContext>(options =>
+            services.AddDbContext<KitchenDbContext>(options =>
                 options.UseNpgsql(configuration.GetConnectionString("mssqlserverConnection")));                 
 
             // Application
             services.AddScoped<IOrderService, OrderService>();
-
-            // Clients
-            services.AddHttpClient<IInventoryClient, InventoryClient>();            
+            services.AddScoped<IMenuService, MenuService>();                      
         }
     }
 }

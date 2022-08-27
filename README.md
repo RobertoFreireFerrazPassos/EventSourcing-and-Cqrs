@@ -50,21 +50,13 @@ Port: 5432
 Username: simha
 Password: Postgres2019!
 ```
-##### Kitchen Schema
-
-##### Create Recipes using ids from Inventory Database
-
-Query:
-```
-```
-
 
 ### Update database using migrations
 
 In Visual Studio, open NuGet Package Manager Console from Tools -> NuGet Package Manager -> Package Manager Console and enter the following command:
 ```
 add-migration Inventory (already done)
-update-database �verbose
+update-database --verbose
 ```
 NOTE: Must be...
 Using project 'InventoryStorage\Infrastructure\Inventory.DataAccess'.
@@ -72,7 +64,7 @@ Using startup project 'InventoryStorage\Presentation\Inventory.Api'.
 
 ```
 add-migration Kitchen (already done)
-update-database �verbose
+update-database --verbose
 ```
 NOTE: Must be...
 Using project 'Kitchen\Infrastructure\Kitchen.DataAccess'.
@@ -215,8 +207,20 @@ The result will be:
 
 ### Kitchen application
 
+Get Menu
 
-
+Make a order:
+```json
+{
+  "table": 2,
+  "items": [
+    {
+      "name": "Soup",
+      "quantity": 2
+    }
+  ]
+}
+```
 # To do list:
 
 - Optmize entity framework migrations before update dabase
@@ -272,6 +276,8 @@ EntityFramework
 https://www.entityframeworktutorial.net/efcore/entity-framework-core-console-application.aspx
 
 https://www.npgsql.org/efcore/mapping/json.html?tabs=data-annotations%2Cpoco
+
+https://www.macoratti.net/20/07/efc_seed1.htm
 
 Optimistic Concurrency:
 
