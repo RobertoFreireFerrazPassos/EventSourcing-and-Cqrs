@@ -205,7 +205,11 @@ The result will be:
 }
 ```
 
-### Kitchen application
+<details>
+<summary style="font-size:14px">Kitchen application</summary>
+<p>
+
+\```md
 
 Get Menu
 
@@ -225,6 +229,20 @@ Make a order:
 Reserve a order using OrderId
 
 Check order using the table number
+
+\```
+
+</p></details>
+
+<details>
+<summary style="font-size:14px">Receipts application</summary>
+<p>
+
+\```md
+
+\```
+
+</p></details>
 
 # To do list:
 
