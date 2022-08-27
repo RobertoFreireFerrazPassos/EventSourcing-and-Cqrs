@@ -148,27 +148,6 @@
                 <mxCell id="95" value="TimeStamp : DateTime" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;" vertex="1" parent="90">
                     <mxGeometry y="150" width="170" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="96" value="" style="endArrow=classic;html=1;exitX=0.415;exitY=1.162;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.336;entryY=-0.02;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="67" target="90">
-                    <mxGeometry relative="1" as="geometry">
-                        <mxPoint x="290" y="290" as="sourcePoint"/>
-                        <mxPoint x="450" y="290" as="targetPoint"/>
-                    </mxGeometry>
-                </mxCell>
-                <mxCell id="97" value="Has" style="edgeLabel;resizable=0;html=1;align=center;verticalAlign=middle;" connectable="0" vertex="1" parent="96">
-                    <mxGeometry relative="1" as="geometry">
-                        <mxPoint x="22" as="offset"/>
-                    </mxGeometry>
-                </mxCell>
-                <mxCell id="98" value="1" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=bottom;" connectable="0" vertex="1" parent="96">
-                    <mxGeometry x="-1" relative="1" as="geometry">
-                        <mxPoint x="12" y="15" as="offset"/>
-                    </mxGeometry>
-                </mxCell>
-                <mxCell id="99" value="N" style="edgeLabel;resizable=0;html=1;align=right;verticalAlign=bottom;" connectable="0" vertex="1" parent="96">
-                    <mxGeometry x="1" relative="1" as="geometry">
-                        <mxPoint x="23" as="offset"/>
-                    </mxGeometry>
-                </mxCell>
             </root>
         </mxGraphModel>
     </diagram>
