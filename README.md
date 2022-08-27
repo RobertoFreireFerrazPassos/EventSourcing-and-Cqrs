@@ -221,6 +221,9 @@ Make a order:
   ]
 }
 ```
+
+Reserve a order: using OrderId
+
 # To do list:
 
 - Optmize entity framework migrations before update dabase

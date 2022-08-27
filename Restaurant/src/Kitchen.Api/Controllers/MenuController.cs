@@ -19,7 +19,7 @@ namespace Kitchen.Api.Controllers
         {
             try
             {
-                return Ok(_menuService.GetMenu());
+                return Ok(await _menuService.GetMenu());
             }
             catch (Exception ex)
             {

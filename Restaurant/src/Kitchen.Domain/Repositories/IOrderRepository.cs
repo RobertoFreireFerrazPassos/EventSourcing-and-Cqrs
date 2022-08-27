@@ -4,10 +4,11 @@ namespace Kitchen.Domain.Repositories
 {
     public interface IOrderRepository
     {
-        void CreateOrder(StoredEventEntity storedEvent, TableEntity table, OrderEntity orderEntity);
-        void UpdateOrder(StoredEventEntity storedEvent, OrderEntity orderEntity);
-        public TableEntity? GetTable(int number);
-        OrderEntity? GetActiveOrder(int table);
-        OrderEntity? GetOrder(Guid OrderId);
+        Task CreateOrder(StoredEventEntity storedEvent, TableEntity table, OrderEntity orderEntity);
+        Task UpdateOrder(StoredEventEntity storedEvent, OrderEntity orderEntity);
+        Task<TableEntity?> GetTable(int number);
+        Task<OrderEntity?> GetActiveOrder(int table);
+        Task<OrderEntity?> GetOrder(Guid OrderId);
+        Task<OrderEntity?> GetOrder(int table);
     }
 }

@@ -18,11 +18,11 @@ namespace Kitchen.Application.Services
 
         public OrderEntity CreateOrder(OrderCreatedCommand orderCreatedCommand)
         {
-            var table = _orderRepository.GetTable(orderCreatedCommand.Table);
+            var table = _orderRepository.GetTable(orderCreatedCommand.Table).Result;
 
             if (table is null)
             {
-                throw new Exception("There is not " + orderCreatedCommand.Table);
+                throw new Exception("There is not table " + orderCreatedCommand.Table);
             }
 
             var serializedData = JsonConvert.SerializeObject(orderCreatedCommand);
@@ -34,7 +34,7 @@ namespace Kitchen.Application.Services
 
             var activeOrder = _orderRepository.GetActiveOrder(
                         orderCreatedCommand.Table
-                    );
+                    ).Result;
 
             if (activeOrder is not null)
             {
@@ -63,22 +63,29 @@ namespace Kitchen.Application.Services
             return orderEntity;
         }
 
-        public void GetOrder()
+        public OrderEntity GetOrder(int table)
         {
-            
+            var order = _orderRepository.GetOrder(table).Result;
+
+            if (order is null)
+            {
+                throw new Exception("There is not order for this table " + table);
+            }
+
+            return order;
         }
 
         public bool ReserveOrder(OrderReservedCommand orderReservedCommand)
         {
 
-            var order = _orderRepository.GetOrder(orderReservedCommand.OrderId);
+            var order = _orderRepository.GetOrder(orderReservedCommand.OrderId).Result;
 
             if (order is null)
             {
                 throw new Exception("Order " + orderReservedCommand.OrderId + " doesn't exist.");
             }
 
-            if (order.Status == OrderStatus.Active || order.Status == OrderStatus.Reserved)
+            if (order.Status != OrderStatus.Active)
             {
                 throw new Exception("Order " + orderReservedCommand.OrderId + " with status " + order.Status + " cannot be reserved");
             }

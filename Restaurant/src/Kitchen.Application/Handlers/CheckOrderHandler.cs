@@ -1,5 +1,6 @@
 ﻿using Kitchen.Application.DataContracts.Responses;
 using Kitchen.Application.Queries;
+using Kitchen.Domain.Dtos;
 using Kitchen.Domain.Services;
 using MediatR;
 
@@ -15,8 +16,20 @@ namespace Kitchen.Application.Handlers
 
         public Task<OrderResponse> Handle(CheckOrderQuery request, CancellationToken cancellationToken)
         {
-            _orderService.GetOrder();
-            return null;
+            var result = _orderService.GetOrder(request.Table);
+
+            return Task.FromResult(new OrderResponse()
+            {
+                Id = result.Id,
+                AggregateId = result.AggregateId,
+                Table = result.Table,
+                Status = result.Status,
+                Items = result.Items.Select(i => new Item()
+                {
+                    Name = i.MenuItem.Name,
+                    Quantity = i.Quantity
+                }).ToList()
+            });
         }
     }
 }

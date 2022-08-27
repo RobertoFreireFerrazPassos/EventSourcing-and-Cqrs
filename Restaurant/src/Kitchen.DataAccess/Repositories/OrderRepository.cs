@@ -2,6 +2,7 @@
 using Kitchen.Domain.Entities;
 using Kitchen.Domain.Enums;
 using Kitchen.Domain.Repositories;
+using Microsoft.EntityFrameworkCore;
 
 namespace Kitchen.DataAccess.Repositories
 {
@@ -14,7 +15,7 @@ namespace Kitchen.DataAccess.Repositories
             _kitchenDbContext = eventStoreDbContext;
         }
 
-        public void CreateOrder(StoredEventEntity storedEvent, TableEntity table, OrderEntity orderEntity)
+        public async Task CreateOrder(StoredEventEntity storedEvent, TableEntity table, OrderEntity orderEntity)
         {
             _kitchenDbContext.StoredEvents.Add(storedEvent);
             _kitchenDbContext.Tables.Update(table);
@@ -23,7 +24,7 @@ namespace Kitchen.DataAccess.Repositories
             _kitchenDbContext.SaveChanges();
         }
 
-        public void UpdateOrder(StoredEventEntity storedEvent, OrderEntity orderEntity)
+        public async Task UpdateOrder(StoredEventEntity storedEvent, OrderEntity orderEntity)
         {
             _kitchenDbContext.StoredEvents.Add(storedEvent);
             _kitchenDbContext.Orders.Update(orderEntity);
@@ -31,22 +32,29 @@ namespace Kitchen.DataAccess.Repositories
             _kitchenDbContext.SaveChanges();
         }
 
-        public TableEntity? GetTable(int number)
+        public async Task<TableEntity?> GetTable(int number)
         {
             return _kitchenDbContext.Tables.
                 FirstOrDefault(t => t.Number == number);
         }
 
-        public OrderEntity? GetActiveOrder(int table)
+        public async Task<OrderEntity?> GetActiveOrder(int table)
         {
             return _kitchenDbContext.Orders
                 .FirstOrDefault(o => o.Table == table && o.Status == OrderStatus.Active);
         }
 
-        public OrderEntity? GetOrder(Guid OrderId)
+        public async Task<OrderEntity?> GetOrder(Guid OrderId)
         {
             return _kitchenDbContext.Orders
                 .FirstOrDefault(o => o.Id == OrderId);
+        }
+
+        public async Task<OrderEntity?> GetOrder(int table)
+        {
+            return _kitchenDbContext.Orders
+                .Include(o => o.Items).ThenInclude(i => i.MenuItem)
+                .FirstOrDefault(o => o.Table == table);
         }
     }
 }

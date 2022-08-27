@@ -22,7 +22,8 @@ namespace Kitchen.Application.Handlers
 
             return Task.FromResult(new OrderResponse()
             {
-                Id = result.AggregateId,
+                Id = result.Id,
+                AggregateId = result.AggregateId,
                 Table = result.Table,
                 Status = OrderStatus.Active,
                 Items = result.Items.Select(i => new Item()
