@@ -260,6 +260,10 @@ Check order using the table number
 
 # To do list:
 
+<details>
+<summary style="font-size:14px">Items</summary>
+<p>
+
 - Optmize entity framework migrations before update database
 
 - Create OutBoxHandler using BackgroundService 
@@ -285,6 +289,9 @@ https://makolyte.com/csharp-configuring-how-long-an-httpclient-connection-will-s
 - Read EF core articles and try to implement
 
 https://makolyte.com/category/csharp/ef-core/
+
+</p></details>
+
 
 # References:
 
