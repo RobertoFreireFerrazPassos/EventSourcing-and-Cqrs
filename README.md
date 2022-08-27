@@ -80,7 +80,9 @@ Kitchen Api: http://localhost:3001/swagger/index.html
 
 ## Steps to test:
 
-### Inventory application
+<details>
+<summary style="font-size:14px">Inventory application</summary>
+<p>
 
 Add new item (/Inventory/Update):
 ```json
@@ -205,11 +207,11 @@ The result will be:
 }
 ```
 
+</p></details>
+
 <details>
 <summary style="font-size:14px">Kitchen application</summary>
 <p>
-
-\```md
 
 Get Menu
 
@@ -230,17 +232,12 @@ Reserve a order using OrderId
 
 Check order using the table number
 
-\```
-
 </p></details>
 
 <details>
 <summary style="font-size:14px">Receipts application</summary>
 <p>
 
-\```md
-
-\```
 
 </p></details>
 
