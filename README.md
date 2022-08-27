@@ -26,14 +26,20 @@
 
 Run Docker Compose up to create database server
 
-#### SqlServer database
+<details>
+<summary style="font-size:14px">SqlServer database</summary>
+<p>
 
 look at docker compose file for SqlServer authentication
 
 - ServerName: localhost
 - login: sa
 
-#### PostgreSQL database
+</p></details>
+
+<details>
+<summary style="font-size:14px">PostgreSQL database</summary>
+<p>
 
 PgAdmin for manage postgreSQL:
 http://localhost:16543/
@@ -51,7 +57,11 @@ Username: simha
 Password: Postgres2019!
 ```
 
-### Update database using migrations
+</p></details>
+
+<details>
+<summary style="font-size:14px">Update database using migrations</summary>
+<p>
 
 In Visual Studio, open NuGet Package Manager Console from Tools -> NuGet Package Manager -> Package Manager Console and enter the following command:
 ```
@@ -70,13 +80,20 @@ NOTE: Must be...
 Using project 'Kitchen\Infrastructure\Kitchen.DataAccess'.
 Using startup project 'Kitchen\Presentation\Kitchen.Api'.
 
-### Run applications
+</p></details>
+
+<details>
+<summary style="font-size:14px">Run applications</summary>
+<p>
 
 Set multiple start up projects
 
 Inventory Api: http://localhost:3000/swagger/index.html
 
 Kitchen Api: http://localhost:3001/swagger/index.html
+
+
+</p></details>
 
 ## Steps to test:
 
@@ -271,6 +288,10 @@ https://makolyte.com/category/csharp/ef-core/
 
 # References:
 
+<details>
+<summary style="font-size:14px">Reference links</summary>
+<p>
+
 https://www.jobsity.com/blog/getting-started-with-background-tasks-in-asp.net-core-webapi
 
 https://medium.com/medialesson/run-and-manage-periodic-background-tasks-in-asp-net-core-6-with-c-578a31f4b7a3
@@ -302,3 +323,7 @@ https://www.macoratti.net/20/07/efc_seed1.htm
 Optimistic Concurrency:
 
 https://docs.microsoft.com/en-us/aspnet/mvc/overview/getting-started/getting-started-with-ef-using-mvc/handling-concurrency-with-the-entity-framework-in-an-asp-net-mvc-application
+
+
+</p></details>
+
