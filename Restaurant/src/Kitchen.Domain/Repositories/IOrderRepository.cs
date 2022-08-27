@@ -9,6 +9,6 @@ namespace Kitchen.Domain.Repositories
         Task<TableEntity?> GetTable(int number);
         Task<OrderEntity?> GetActiveOrder(int table);
         Task<OrderEntity?> GetOrder(Guid OrderId);
-        Task<OrderEntity?> GetOrder(int table);
+        Task<OrderEntity?> GetOrder(int table, Guid aggregateId);
     }
 }

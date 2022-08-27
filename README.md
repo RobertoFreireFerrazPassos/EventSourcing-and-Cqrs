@@ -222,11 +222,13 @@ Make a order:
 }
 ```
 
-Reserve a order: using OrderId
+Reserve a order using OrderId
+
+Check order using the table number
 
 # To do list:
 
-- Optmize entity framework migrations before update dabase
+- Optmize entity framework migrations before update database
 
 - Create OutBoxHandler using BackgroundService 
 

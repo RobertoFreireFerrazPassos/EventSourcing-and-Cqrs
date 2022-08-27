@@ -50,11 +50,11 @@ namespace Kitchen.DataAccess.Repositories
                 .FirstOrDefault(o => o.Id == OrderId);
         }
 
-        public async Task<OrderEntity?> GetOrder(int table)
+        public async Task<OrderEntity?> GetOrder(int table, Guid aggregateId)
         {
             return _kitchenDbContext.Orders
                 .Include(o => o.Items).ThenInclude(i => i.MenuItem)
-                .FirstOrDefault(o => o.Table == table);
+                .FirstOrDefault(o => o.Table == table && o.AggregateId == aggregateId);
         }
     }
 }

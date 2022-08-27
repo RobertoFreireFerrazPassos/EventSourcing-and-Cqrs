@@ -65,7 +65,14 @@ namespace Kitchen.Application.Services
 
         public OrderEntity GetOrder(int table)
         {
-            var order = _orderRepository.GetOrder(table).Result;
+            var tableEntity = _orderRepository.GetTable(table).Result;
+
+            if (tableEntity is null)
+            {
+                throw new Exception("There is not table " + table);
+            }
+
+            var order = _orderRepository.GetOrder(table, tableEntity.CurrentAggregateId).Result;
 
             if (order is null)
             {
