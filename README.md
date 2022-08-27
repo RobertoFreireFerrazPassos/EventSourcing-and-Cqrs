@@ -6,39 +6,34 @@
   <img src="https://github.com/RobertoFreireFerrazPassos/EventSourcing-and-Cqrs/blob/main/Images/project.png?raw=true">
 </p>
 
-CQRS and Event Sourcing
+### Kitchen architecture
+
+#### CQRS and Event Sourcing
 
 <p align="center">
   <img src="https://github.com/RobertoFreireFerrazPassos/EventSourcing-and-Cqrs/blob/main/Images/diagram.png?raw=true">
 </p>
 
+#### Database Schema
 
-# Set up enviroment:
+<p align="center">
+  <img src="https://github.com/RobertoFreireFerrazPassos/EventSourcing-and-Cqrs/blob/main/Images/kitchenschema.png?raw=true">
+</p>
+
+## Set up enviroment:
+
+### Set up Databases
 
 Run Docker Compose up to create database server
 
-In Visual Studio, open NuGet Package Manager Console from Tools -> NuGet Package Manager -> Package Manager Console and enter the following command:
-```
-add-migration Inventory (already done)
-update-database –verbose
-```
-NOTE: Must be...
-Using project 'InventoryStorage\Infrastructure\Inventory.DataAccess'.
-Using startup project 'InventoryStorage\Presentation\Inventory.Api'.
+#### SqlServer database
 
-```
-add-migration Kitchen (already done)
-update-database –verbose
-```
-NOTE: Must be...
-Using project 'Kitchen\Infrastructure\Kitchen.DataAccess'.
-Using startup project 'Kitchen\Presentation\Kitchen.Api'.
+look at docker compose file for SqlServer authentication
 
-Set multiple start up projects
+- ServerName: localhost
+- login: sa
 
-Inventory Api: http://localhost:3000/swagger/index.html
-
-Kitchen Api: http://localhost:3001/swagger/index.html
+#### PostgreSQL database
 
 PgAdmin for manage postgreSQL:
 http://localhost:16543/
@@ -50,28 +45,50 @@ Click in Add new server
 ```
 Server name: postgres-db
 Host Name: postgres-db
-Maintenance database: postgres
+Maintenance database: Kitchen
 Port: 5432
 Username: simha
 Password: Postgres2019!
 ```
+##### Kitchen Schema
 
-Queries:
+##### Create Recipes using ids from Inventory Database
+
+Query:
 ```
-SELECT "Id", "Name", "Quantity", "OrderEntityId"
-	FROM public."Items";
-
-SELECT "Id", "Data", "MessageType", "AggregateId", "Timestamp"
-	FROM public."StoredEvents";
-
-SELECT "Id", "Table", "CurrentAggregateId"
-	FROM public."Tables";
-    
-SELECT "Id", "AggregateId", "Table", "Status"
-	FROM public."Orders";
 ```
+
+
+### Update database using migrations
+
+In Visual Studio, open NuGet Package Manager Console from Tools -> NuGet Package Manager -> Package Manager Console and enter the following command:
+```
+add-migration Inventory (already done)
+update-database ï¿½verbose
+```
+NOTE: Must be...
+Using project 'InventoryStorage\Infrastructure\Inventory.DataAccess'.
+Using startup project 'InventoryStorage\Presentation\Inventory.Api'.
+
+```
+add-migration Kitchen (already done)
+update-database ï¿½verbose
+```
+NOTE: Must be...
+Using project 'Kitchen\Infrastructure\Kitchen.DataAccess'.
+Using startup project 'Kitchen\Presentation\Kitchen.Api'.
+
+### Run applications
+
+Set multiple start up projects
+
+Inventory Api: http://localhost:3000/swagger/index.html
+
+Kitchen Api: http://localhost:3001/swagger/index.html
 
 ## Steps to test:
+
+### Inventory application
 
 Add new item (/Inventory/Update):
 ```json
@@ -195,6 +212,10 @@ The result will be:
   ]
 }
 ```
+
+### Kitchen application
+
+
 
 # To do list:
 
