@@ -34,3 +34,10 @@ services:
       - "16543:80"
     depends_on:
       - schooldb
+
+  rabbitmq:
+    container_name: rabbitmq
+    image: masstransit/rabbitmq
+    ports:
+      - 5672:5672
+      - 15672:15672

@@ -1,4 +1,6 @@
-﻿using Kitchen.Domain.Repositories;
+﻿using Kitchen.Domain.Entities;
+using Kitchen.Domain.Producers;
+using Kitchen.Domain.Repositories;
 using Microsoft.Extensions.Hosting;
 
 namespace Kitchen.EventOutbox
@@ -7,9 +9,14 @@ namespace Kitchen.EventOutbox
 	{
 		private readonly IIntegrationEventOutboxRepository _integrationEventOutboxRepository;
 
-		public EventOutboxBackgroundService(IIntegrationEventOutboxRepository integrationEventOutboxRepository)
+		private readonly IOrderEventProducer _orderEventProducer;
+
+		public EventOutboxBackgroundService(
+			IIntegrationEventOutboxRepository integrationEventOutboxRepository,
+			IOrderEventProducer orderEventProducer)
 		{
 			_integrationEventOutboxRepository = integrationEventOutboxRepository;
+			_orderEventProducer = orderEventProducer;
 		}
 
 		protected async override Task ExecuteAsync(CancellationToken stoppingToken)
@@ -21,10 +28,19 @@ namespace Kitchen.EventOutbox
 				try
 				{
 					var integrationEvents = await _integrationEventOutboxRepository.GetIntegrationEventsOutbox(stoppingToken);
+					var eventsToBeDeleted = new List<IntegrationEventOutbox>();
 
-					// TO DO: publish events
+					foreach (var integrationEvent in integrationEvents)
+                    {
+						var wasSent = _orderEventProducer.Publish(integrationEvent.Event).Result;
 
-					_integrationEventOutboxRepository.DeleteIntegrationEventsOutbox(integrationEvents);
+						if (wasSent)
+                        {
+							eventsToBeDeleted.Add(integrationEvent);
+						}
+					}					
+
+					_integrationEventOutboxRepository.DeleteIntegrationEventsOutbox(eventsToBeDeleted);
 				}
 				catch (Exception ex)
 				{

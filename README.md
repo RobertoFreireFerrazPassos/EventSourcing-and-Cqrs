@@ -22,6 +22,14 @@
 
 ## Set up enviroment:
 
+<details>
+<summary style="font-size:14px">RabbitMQ</summary>
+<p>
+
+To access RabbitMQ: http://localhost:15672/ username and password: guest / guest
+
+</p></details>
+
 ### Set up Databases
 
 Run Docker Compose up to create database server
@@ -38,7 +46,7 @@ look at docker compose file for SqlServer authentication
 </p></details>
 
 <details>
-<summary style="font-size:14px">PostgreSQL database</summary>
+<summary style="font-size:14px">PostgreSQL database using PgAdmin</summary>
 <p>
 
 PgAdmin for manage postgreSQL:

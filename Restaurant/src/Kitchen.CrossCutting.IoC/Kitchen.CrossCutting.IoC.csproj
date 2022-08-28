@@ -7,10 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="MassTransit.AspNetCore" Version="7.3.1" />
+    <PackageReference Include="MassTransit.RabbitMQ" Version="8.0.6" />
     <PackageReference Include="MediatR" Version="10.0.1" />
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="10.0.1" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="6.0.0" />
     <PackageReference Include="Microsoft.Extensions.Http" Version="6.0.0" />
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="6.0.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -18,6 +21,7 @@
     <ProjectReference Include="..\Kitchen.DataAccess\Kitchen.DataAccess.csproj" />
     <ProjectReference Include="..\Kitchen.Domain\Kitchen.Domain.csproj" />
     <ProjectReference Include="..\Kitchen.EventOutbox\Kitchen.EventOutbox.csproj" />
+    <ProjectReference Include="..\Kitchen.Events\Kitchen.Events.csproj" />
   </ItemGroup>
 
 </Project>
