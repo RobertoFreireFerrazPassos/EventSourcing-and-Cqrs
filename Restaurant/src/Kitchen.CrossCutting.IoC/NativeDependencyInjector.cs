@@ -8,6 +8,8 @@ using Microsoft.Extensions.Configuration;
 using Kitchen.DataAccess.Context;
 using Microsoft.EntityFrameworkCore;
 using Kitchen.Application.Commands;
+using Kitchen.EventOutbox;
+using Kitchen.Application.Queries;
 
 namespace Kitchen.CrossCutting.IoC
 {
@@ -15,18 +17,52 @@ namespace Kitchen.CrossCutting.IoC
     {
         public static void RegisterServices(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddMediatR(typeof(CreateOrderCommand));
-
-            // Infra - Data 
-            services.AddScoped<IOrderRepository,OrdersRepository> ();
-            services.AddScoped<IMenuRepository, MenuRepository>();
-
-            services.AddDbContext<KitchenDbContext>(options =>
-                options.UseNpgsql(configuration.GetConnectionString("mssqlserverConnection")));                 
-
-            // Application
-            services.AddScoped<IOrderService, OrderService>();
-            services.AddScoped<IMenuService, MenuService>();                      
+            services.RegisterCQRS()
+                    .RegisterBackgroundServices()
+                    .RegisterRepositories()
+                    .RegisterDbContext(configuration)
+                    .RegisterApplicationServices();
         }
+        private static IServiceCollection RegisterCQRS(this IServiceCollection services)
+        {
+            services.AddMediatR(typeof(CreateOrderCommand));
+            services.AddMediatR(typeof(ReserveOrderCommand));
+            services.AddMediatR(typeof(CheckOrderQuery));
+
+            return services;
+        }
+
+        private static IServiceCollection RegisterBackgroundServices(this IServiceCollection services)
+        {
+            services.AddHostedService<EventOutboxBackgroundService>();
+
+            return services;
+        }
+
+        private static IServiceCollection RegisterRepositories(this IServiceCollection services)
+        {
+            services.AddScoped<IOrderRepository, OrdersRepository>();
+            services.AddScoped<IMenuRepository, MenuRepository>();
+            
+            services.AddSingleton<IIntegrationEventOutboxRepository,IntegrationEventOutboxRepository>();
+
+            return services;
+        }
+
+        private static IServiceCollection RegisterDbContext(this IServiceCollection services, IConfiguration configuration)
+        {
+            services.AddDbContext<KitchenDbContext>(options =>
+                options.UseNpgsql(configuration.GetConnectionString("mssqlserverConnection")));
+
+            return services;
+        }
+
+        private static IServiceCollection RegisterApplicationServices(this IServiceCollection services)
+        {
+            services.AddScoped<IOrderService, OrderService>();
+            services.AddScoped<IMenuService, MenuService>();
+
+            return services;
+        }        
     }
 }

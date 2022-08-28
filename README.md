@@ -274,6 +274,13 @@ https://makolyte.com/csharp-circuit-breaker-with-polly/
 
 - Implement Kafka to comunicate between OutboxHandler and Receipts Api
 
+- Implement To do search for: "// TO DO"
+
+- Study and try to improve the repositories
+
+- Study the correct form to AddMediatR in RegisterServices
+
+- It is duplicating menu items in database
 
 </p></details>
 

@@ -8,11 +8,10 @@ namespace Kitchen.DataAccess.Context
         public DbSet<MenuItemEntity> MenuItems { get; set; }
         public DbSet<TableEntity> Tables { get; set; }
         public DbSet<OrderEntity> Orders { get; set; }
-        public DbSet<StoredEventEntity> StoredEvents { get; set; }      
+        public DbSet<StoredEventEntity> StoredEvents { get; set; }
+        public DbSet<IntegrationEventOutbox> IntegrationEventsOutbox { get; set; }        
 
-        public KitchenDbContext(DbContextOptions<KitchenDbContext> options) : base(options)
-        {
-        }
+        public KitchenDbContext(DbContextOptions<KitchenDbContext> options) : base(options) {}
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
