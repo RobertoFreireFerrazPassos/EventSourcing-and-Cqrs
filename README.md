@@ -287,13 +287,15 @@ Expected result:
 
 # To do list:
 
+## Next item
+
+- Implement Endpoint to calculate receipt from order events
+
 <details>
-<summary style="font-size:14px">Items</summary>
+<summary style="font-size:14px">Pending Items</summary>
 <p>
 
-- Create OutBoxHandler using BackgroundService 
-
-https://makolyte.com/aspdotnet-how-to-use-a-backgroundservice-for-long-running-and-periodic-tasks/
+- Understand RabbitMq and fix bug on queue that sometimes it does not send event
 
 - Understand and implement Circuit breaker with Polly
 
