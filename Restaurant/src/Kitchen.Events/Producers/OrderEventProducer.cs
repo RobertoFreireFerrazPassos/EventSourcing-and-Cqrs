@@ -1,4 +1,4 @@
-﻿using Kitchen.Domain.Entities;
+﻿using Kitchen.Domain.Events;
 using Kitchen.Domain.Producers;
 using MassTransit;
 using Microsoft.Extensions.DependencyInjection;
@@ -14,7 +14,7 @@ namespace Kitchen.Events.Producers
             _serviceProvider = serviceProvider;
         }
 
-    public async Task<bool> Publish(StoredEventEntity storedEventEvent)
+        public async Task<bool> Publish(StoredEvent storedEvent)
         {
             try
             {
@@ -22,7 +22,7 @@ namespace Kitchen.Events.Producers
                 {
                     var publisher = scope.ServiceProvider.GetRequiredService<IPublishEndpoint>();
 
-                    await publisher.Publish(storedEventEvent);
+                    await publisher.Publish(storedEvent);
                 }
                 
                 return true;

@@ -255,14 +255,33 @@ Make a order:
 
 Reserve a order using OrderId
 
-Check order using the table number
-
 </p></details>
 
 <details>
 <summary style="font-size:14px">Receipts application</summary>
 <p>
 
+Verify orders using the table number
+
+Expected result:
+```json
+[
+  {
+    "id": "03add627-f742-4ceb-b344-d3ee068fdbe8",
+    "messageType": "OrderCreatedCommand",
+    "timestamp": "2022-08-28T17:37:12.15547",
+    "aggregateId": "d236a7ef-c917-457c-aa5f-346847f35173",
+    "data": "{\"Items\": [{\"Name\": \"Soup\", \"Quantity\": 2}], \"Table\": 2}"
+  },
+  {
+    "id": "4366945d-41c1-459b-91b2-de2cb0b9fbf2",
+    "messageType": "OrderReservedCommand",
+    "timestamp": "2022-08-28T17:38:18.321107",
+    "aggregateId": "d236a7ef-c917-457c-aa5f-346847f35173",
+    "data": "{\"OrderId\": \"ab5e8495-464c-41bb-95d4-6465da67927f\"}"
+  }
+]
+```
 
 </p></details>
 

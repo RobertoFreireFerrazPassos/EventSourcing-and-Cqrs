@@ -1,4 +1,5 @@
 ﻿using Kitchen.Domain.Entities;
+using Kitchen.Domain.Events;
 using Kitchen.Domain.Producers;
 using Kitchen.Domain.Repositories;
 using Microsoft.Extensions.Hosting;
@@ -32,7 +33,16 @@ namespace Kitchen.EventOutbox
 
 					foreach (var integrationEvent in integrationEvents)
                     {
-						var wasSent = _orderEventProducer.Publish(integrationEvent.Event).Result;
+						var storedEvent = new StoredEvent()
+						{
+							Id = integrationEvent.Event.Id,
+							MessageType = integrationEvent.Event.MessageType,
+							Timestamp = integrationEvent.Event.Timestamp,
+							AggregateId = integrationEvent.Event.AggregateId,
+							Data = integrationEvent.Event.Data
+						};
+
+						var wasSent = _orderEventProducer.Publish(storedEvent).Result;
 
 						if (wasSent)
                         {

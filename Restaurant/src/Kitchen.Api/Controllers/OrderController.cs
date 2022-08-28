@@ -46,7 +46,7 @@ namespace Kitchen.Api.Controllers
             }
         }
 
-        [HttpGet("Check/{table:int}")]
+        [HttpGet("VerifyOrders/Table/{table:int}")]
         public async Task<IActionResult> GetOrder(int table)
         {
             try
