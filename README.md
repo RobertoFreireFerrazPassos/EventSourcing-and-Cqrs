@@ -295,19 +295,21 @@ Expected result:
 <summary style="font-size:14px">Pending Items</summary>
 <p>
 
-- Understand RabbitMq and fix bug on queue that sometimes it does not send event
+- Event contract to be publish and consumed requires that use the same namespace. So, modify to use only one and create a unique library for that. Maybe, Event.DataContract
 
-- Understand and implement Circuit breaker with Polly
+- Add logic to keep order while sending and receiving events via rabbitmq. Maybe, add timestamp in event outbox table
+
+- It seems that sometimes it does not send event via rabbitmq
+
+- Understand and see it can implement Circuit breaker with Polly
 
 https://makolyte.com/csharp-circuit-breaker-with-polly/
 
-- Implement Kafka to comunicate between OutboxHandler and Receipts Api
-
 - Implement To do search for: "// TO DO"
 
-- Study and try to improve the repositories
+- Try to improve the repositories
 
-- Study the correct form to AddMediatR in RegisterServices
+- Try to correct form to AddMediatR in RegisterServices
 
 - It is duplicating menu items in database
 
