@@ -295,6 +295,8 @@ Expected result:
 <summary style="font-size:14px">Pending Items</summary>
 <p>
 
+- Understand RabbitMq and fix bug on queue that sometimes it does not send event
+
 - Event contract to be publish and consumed requires that use the same namespace. So, modify to use only one and create a unique library for that. Maybe, Event.DataContract
 
 - Add logic to keep order while sending and receiving events via rabbitmq. Maybe, add timestamp in event outbox table
