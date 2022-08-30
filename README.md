@@ -307,8 +307,6 @@ https://makolyte.com/csharp-circuit-breaker-with-polly/
 
 - Study and try to improve the repositories
 
-- Study the correct form to AddMediatR in RegisterServices
-
 - It is duplicating menu items in database
 
 </p></details>
