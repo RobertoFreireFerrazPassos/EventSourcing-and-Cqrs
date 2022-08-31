@@ -1,4 +1,4 @@
-﻿namespace Kitchen.Domain.Events
+﻿namespace Events.Contracts
 {
     public class StoredEvent
     {

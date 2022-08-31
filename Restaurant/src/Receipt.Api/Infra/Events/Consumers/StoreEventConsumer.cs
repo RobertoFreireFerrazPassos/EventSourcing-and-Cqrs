@@ -1,4 +1,4 @@
-﻿using Kitchen.Domain.Events;
+﻿using Events.Contracts;
 using MassTransit;
 using Receipt.Api.Entities;
 using Receipt.Api.Infra.DataAccess;

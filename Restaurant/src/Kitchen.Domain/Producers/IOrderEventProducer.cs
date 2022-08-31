@@ -1,4 +1,4 @@
-﻿using Kitchen.Domain.Events;
+﻿using Events.Contracts;
 
 namespace Kitchen.Domain.Producers
 {

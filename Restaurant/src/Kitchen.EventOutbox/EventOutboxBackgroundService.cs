@@ -1,5 +1,5 @@
-﻿using Kitchen.Domain.Entities;
-using Kitchen.Domain.Events;
+﻿using Events.Contracts;
+using Kitchen.Domain.Entities;
 using Kitchen.Domain.Producers;
 using Kitchen.Domain.Repositories;
 using Microsoft.Extensions.Hosting;

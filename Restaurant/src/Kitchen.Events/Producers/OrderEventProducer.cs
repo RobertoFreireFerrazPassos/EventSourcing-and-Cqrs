@@ -1,4 +1,4 @@
-﻿using Kitchen.Domain.Events;
+﻿using Events.Contracts;
 using Kitchen.Domain.Producers;
 using MassTransit;
 using Microsoft.Extensions.DependencyInjection;

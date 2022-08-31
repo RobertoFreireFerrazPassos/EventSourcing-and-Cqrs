@@ -100,6 +100,8 @@ Inventory Api: http://localhost:3000/swagger/index.html
 
 Kitchen Api: http://localhost:3001/swagger/index.html
 
+Receipt Api: http://localhost:3002/swagger/index.html
+
 
 </p></details>
 
@@ -261,7 +263,7 @@ Reserve a order using OrderId
 <summary style="font-size:14px">Receipts application</summary>
 <p>
 
-Verify orders using the table number
+See Receipt
 
 Expected result:
 ```json
@@ -295,9 +297,6 @@ Expected result:
 <summary style="font-size:14px">Pending Items</summary>
 <p>
 
-- Understand RabbitMq and fix bug on queue that sometimes it does not send event
-
-- Event contract to be publish and consumed requires that use the same namespace. So, modify to use only one and create a unique library for that. Maybe, Event.DataContract
 
 - Add logic to keep order while sending and receiving events via rabbitmq. Maybe, add timestamp in event outbox table
 
@@ -310,8 +309,6 @@ https://makolyte.com/csharp-circuit-breaker-with-polly/
 - Implement To do search for: "// TO DO"
 
 - Try to improve the repositories
-
-- Study the correct form to AddMediatR in RegisterServices
 
 - It is duplicating menu items in database
 
