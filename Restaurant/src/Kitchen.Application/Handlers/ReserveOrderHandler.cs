@@ -13,10 +13,10 @@ namespace Kitchen.Application.Handlers
             _orderService = orderService;
         }
 
-        public Task<bool> Handle(ReserveOrderCommand command, CancellationToken cancellationToken)
+        public async Task<bool> Handle(ReserveOrderCommand command, CancellationToken cancellationToken)
         {
             var orderReservedCommand = new OrderReservedCommand(command.OrderId);
-            return Task.FromResult(_orderService.ReserveOrder(orderReservedCommand));
+            return await _orderService.ReserveOrder(orderReservedCommand);
         }
     }
 }

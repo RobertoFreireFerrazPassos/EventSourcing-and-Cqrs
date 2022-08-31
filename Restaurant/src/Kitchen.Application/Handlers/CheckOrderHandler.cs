@@ -14,11 +14,11 @@ namespace Kitchen.Application.Handlers
             _orderService = orderService;
         }
 
-        public Task<OrderResponse> Handle(CheckOrderQuery request, CancellationToken cancellationToken)
+        public async Task<OrderResponse> Handle(CheckOrderQuery request, CancellationToken cancellationToken)
         {
-            var result = _orderService.GetOrder(request.Table);
+            var result = await _orderService.GetOrder(request.Table);
 
-            return Task.FromResult(new OrderResponse()
+            return new OrderResponse()
             {
                 Id = result.Id,
                 AggregateId = result.AggregateId,
@@ -29,7 +29,7 @@ namespace Kitchen.Application.Handlers
                     Name = i.MenuItem.Name,
                     Quantity = i.Quantity
                 }).ToList()
-            });
+            };
         }
     }
 }

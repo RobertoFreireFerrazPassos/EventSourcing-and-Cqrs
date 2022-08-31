@@ -16,9 +16,9 @@ namespace Kitchen.Application.Services
             _orderRepository = orderRepository;          
         }
 
-        public OrderEntity CreateOrder(OrderCreatedCommand orderCreatedCommand)
+        public async Task<OrderEntity> CreateOrder(OrderCreatedCommand orderCreatedCommand)
         {
-            var table = _orderRepository.GetTable(orderCreatedCommand.Table).Result;
+            var table = await _orderRepository.GetTable(orderCreatedCommand.Table);
 
             if (table is null)
             {
@@ -32,9 +32,7 @@ namespace Kitchen.Application.Services
                 Guid.NewGuid(),
                 serializedData);
 
-            var activeOrder = _orderRepository.GetActiveOrder(
-                        orderCreatedCommand.Table
-                    ).Result;
+            var activeOrder = await _orderRepository.GetActiveOrder(orderCreatedCommand.Table);
 
             if (activeOrder is not null)
             {
@@ -63,16 +61,16 @@ namespace Kitchen.Application.Services
             return orderEntity;
         }
 
-        public OrderEntity GetOrder(int table)
+        public async Task<OrderEntity> GetOrder(int table)
         {
-            var tableEntity = _orderRepository.GetTable(table).Result;
+            var tableEntity = await _orderRepository.GetTable(table);
 
             if (tableEntity is null)
             {
                 throw new Exception("There is not table " + table);
             }
 
-            var order = _orderRepository.GetOrder(table, tableEntity.CurrentAggregateId).Result;
+            var order = await _orderRepository.GetOrder(table, tableEntity.CurrentAggregateId);
 
             if (order is null)
             {
@@ -82,10 +80,9 @@ namespace Kitchen.Application.Services
             return order;
         }
 
-        public bool ReserveOrder(OrderReservedCommand orderReservedCommand)
+        public async Task<bool> ReserveOrder(OrderReservedCommand orderReservedCommand)
         {
-
-            var order = _orderRepository.GetOrder(orderReservedCommand.OrderId).Result;
+            var order = await _orderRepository.GetOrder(orderReservedCommand.OrderId);
 
             if (order is null)
             {
@@ -106,7 +103,7 @@ namespace Kitchen.Application.Services
                 order.AggregateId,
                 serializedData);
 
-            _orderRepository.UpdateOrder(storedEvent, order);
+            await _orderRepository.UpdateOrder(storedEvent, order);
 
             return true;
         }

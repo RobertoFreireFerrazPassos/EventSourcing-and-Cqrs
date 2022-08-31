@@ -15,12 +15,12 @@ namespace Kitchen.Application.Handlers
             _orderService = orderService;
         }
 
-        public Task<OrderResponse> Handle(CreateOrderCommand command, CancellationToken cancellationToken)
+        public async Task<OrderResponse> Handle(CreateOrderCommand command, CancellationToken cancellationToken)
         {
             var orderCreatedCommand = new OrderCreatedCommand(command.Request.Table, command.Request.Items);
-            var result = _orderService.CreateOrder(orderCreatedCommand);
+            var result = await _orderService.CreateOrder(orderCreatedCommand);
 
-            return Task.FromResult(new OrderResponse()
+            return new OrderResponse()
             {
                 Id = result.Id,
                 AggregateId = result.AggregateId,
@@ -31,7 +31,7 @@ namespace Kitchen.Application.Handlers
                     Name = i.MenuItem.Name,
                     Quantity = i.Quantity
                 }).ToList()
-            });
+            };
         }
     }
 }

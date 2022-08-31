@@ -22,8 +22,8 @@ namespace Kitchen.Api.Controllers
             try
             {
                 var command = new CreateOrderCommand(request);
-                var result = _mediator.Send(command);
-                return Ok(result.Result);
+                var result = await _mediator.Send(command);
+                return Ok(result);
             }
             catch (Exception ex)
             {
@@ -37,8 +37,8 @@ namespace Kitchen.Api.Controllers
             try
             {
                 var command = new ReserveOrderCommand(orderId);
-                var result = _mediator.Send(command);
-                return Ok(result.Result);
+                var result = await _mediator.Send(command);
+                return Ok(result);
             }
             catch (Exception ex)
             {
@@ -52,8 +52,8 @@ namespace Kitchen.Api.Controllers
             try
             {
                 var query = new CheckOrderQuery(table);
-                var result = _mediator.Send(query);
-                return Ok(result.Result);
+                var result = await _mediator.Send(query);
+                return Ok(result);
             }
             catch (Exception ex)
             {

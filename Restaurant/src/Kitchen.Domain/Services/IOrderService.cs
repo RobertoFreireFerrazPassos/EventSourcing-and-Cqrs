@@ -5,8 +5,9 @@ namespace Kitchen.Domain.Services
 {
     public interface IOrderService
     {
-        OrderEntity CreateOrder(OrderCreatedCommand request);
-        OrderEntity GetOrder(int table);
-        bool ReserveOrder(OrderReservedCommand orderReservedCommand);
+        Task<OrderEntity> CreateOrder(OrderCreatedCommand request);
+
+        Task<OrderEntity> GetOrder(int table);
+        Task<bool> ReserveOrder(OrderReservedCommand orderReservedCommand);
     }
 }

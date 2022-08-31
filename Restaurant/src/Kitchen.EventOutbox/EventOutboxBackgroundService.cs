@@ -42,7 +42,7 @@ namespace Kitchen.EventOutbox
 							Data = integrationEvent.Event.Data
 						};
 
-						var wasSent = _orderEventProducer.Publish(storedEvent).Result;
+						var wasSent = await _orderEventProducer.Publish(storedEvent);
 
 						if (wasSent)
                         {
