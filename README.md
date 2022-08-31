@@ -289,10 +289,6 @@ Expected result:
 
 # To do list:
 
-## Next item
-
-- Implement Endpoint to calculate receipt from order events
-
 <details>
 <summary style="font-size:14px">Pending Items</summary>
 <p>
