@@ -1,5 +1,16 @@
 # Event-Sourcing and CQRS
 
+This project uses:
+
+- MediatR for CQRS
+- DDD
+- Entity Framework code first approach using migration
+- Sql Server using SQL Server Management Studio (SSMS)
+- Postgresql using PgAdmin
+- RabbitMQ - MassTransit
+- Event-Sourcing 
+- Outbox Pattern
+
 ## Overview
 
 <p align="center">
@@ -299,17 +310,17 @@ Expected result:
 
 - Test rabbitmq and receipts out of service
 
-- It seems that sometimes it does not send event via rabbitmq
-
-- Understand and see it can implement Circuit breaker with Polly
+- Understand and see how implement Circuit breaker or retry policy with Polly
 
 https://makolyte.com/csharp-circuit-breaker-with-polly/
 
-- Implement To do search for: "// TO DO"
+- Implement To do. Search for: "// TO DO"
 
 - Try to improve the repositories
 
 - It is duplicating menu items in database
+
+- Implement logic to avoid duplicate events when the kitchen api cannot save in outbox table after sending event
 
 </p></details>
 
