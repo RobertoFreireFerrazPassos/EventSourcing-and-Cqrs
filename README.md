@@ -293,8 +293,11 @@ Expected result:
 <summary style="font-size:14px">Pending Items</summary>
 <p>
 
+- Implement Endpoint to calculate receipt from order events
 
-- Add logic to keep order while sending and receiving events via rabbitmq. Maybe, add timestamp in event outbox table
+- Verify if it keeps order while sending and receiving events via rabbitmq.
+
+- Test rabbitmq and receipts out of service
 
 - It seems that sometimes it does not send event via rabbitmq
 
