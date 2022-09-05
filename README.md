@@ -298,33 +298,6 @@ Expected result:
 
 </p></details>
 
-# To do list:
-
-<details>
-<summary style="font-size:14px">Pending Items</summary>
-<p>
-
-- Implement Endpoint to calculate receipt from order events
-
-- Verify if it keeps order while sending and receiving events via rabbitmq.
-
-- Test rabbitmq and receipts out of service
-
-- Understand and see how implement Circuit breaker or retry policy with Polly
-
-https://makolyte.com/csharp-circuit-breaker-with-polly/
-
-- Implement To do. Search for: "// TO DO"
-
-- Try to improve the repositories
-
-- It is duplicating menu items in database
-
-- Implement logic to avoid duplicate events when the kitchen api cannot save in outbox table after sending event
-
-</p></details>
-
-
 # References:
 
 <details>
