@@ -2,6 +2,7 @@
 
 This project uses:
 
+- Docker orchestrator
 - MediatR for CQRS
 - DDD
 - Entity Framework code first approach using migration
